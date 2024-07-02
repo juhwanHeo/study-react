@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Hello} from "./components/Hello";
+import {Menu} from "./components/Menu";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Hello/>
+    <hr/>
+
+    <Menu
+      link={"https://www.naver.com"}
+      name={"네이버"}
+    />
+
+    <Menu
+      link={"https://www.google.com"}
+      name={"구글"}
+    />
   </React.StrictMode>
 );
 
