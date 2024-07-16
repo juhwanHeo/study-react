@@ -1,4 +1,4 @@
-function Hello() {
+const Hello = () => {
     return (
         <div className="App">
             Hello World!

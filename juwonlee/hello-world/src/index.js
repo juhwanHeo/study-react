@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Hello from './components/Hello';
+import Menu from './components/Menu';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Hello />
+    <Hello />
+    <hr />
+    <div id="wrapper">
+      <Menu title="네이버" url="https://www.naver.com" />
+      <Menu title="구글" url="https://www.google.co.kr" />
+    </div>
   </React.StrictMode>
 );
 
