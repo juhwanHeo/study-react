@@ -1,13 +1,7 @@
 import React from "react";
-import Menu from "./Menu";
 
 const Hello = () => {
-  return (
-    <div>
-      <div>Hello World</div>
-      <Menu />
-    </div>
-  );
+  return <div style={{ borderBottom: "1px solid grey" }}>Hello World</div>;
 };
 
 export default Hello;
