@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {Hello} from "./components/Hello";
-import {Menu} from "./components/Menu";
+import Hello from "./components/Hello";
+import Menu from "./components/Menu";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
