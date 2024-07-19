@@ -1,11 +1,11 @@
-import React from "react";
-
 const Menu = ({ site }) => {
   return (
     <>
       {site.map((item) => (
         <div key={item.id}>
-          <a href={item.link}>{item.title}</a>
+          <a href={item.link} target="_blank" rel="noreferrer">
+            {item.title}
+          </a>
         </div>
       ))}
     </>
