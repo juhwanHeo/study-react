@@ -5,12 +5,14 @@ import App from './App';
 import Hello from './components/Hello'
 import Menu from './components/Menu'
 import reportWebVitals from './reportWebVitals';
+import Board from './components/Board';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Hello/>
     <Menu/>
+    <Board/>
   </React.StrictMode>
 );
 
