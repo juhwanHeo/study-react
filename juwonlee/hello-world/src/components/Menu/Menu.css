@@ -1,0 +1,14 @@
+a.menu-item {
+    margin: 0 5px;
+    padding: 5px 15px;
+    border-radius: 2px;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 1;
+}
+
+a.menu-item:hover {
+    background-color: #1b2e7f;
+    color: white;
+    cursor: pointer;
+}
