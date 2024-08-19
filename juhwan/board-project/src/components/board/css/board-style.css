@@ -1,0 +1,65 @@
+.board-wrapper {
+    max-width: 1200px;
+}
+
+.board-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.board-header div {
+    margin: 0 10px;
+}
+
+.board-header div:first-child {
+    width: 50px; /* Seq의 넓이 */
+}
+
+.board-header div:nth-child(2) {
+    flex-grow: 1;
+}
+
+.board-header div:last-child {
+    width: 150px; /* Creator의 넓이 */
+}
+
+.board-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.board-item:hover {
+    background-color: #e6e6e6;
+}
+
+.board-item div {
+    margin: 0 10px;
+}
+
+.board-item div:first-child {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.board-item div:nth-child(2) {
+    flex-grow: 1;
+    font-size: 1.1em;
+}
+
+.board-item div:last-child {
+    font-style: italic;
+    color: #555;
+}
