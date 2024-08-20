@@ -1,0 +1,19 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.item > div {
+  flex: 1;
+  text-align: center;
+}
+
+.item > div:nth-child(2),
+.item > div:nth-child(3) {
+  flex: 2;
+}
