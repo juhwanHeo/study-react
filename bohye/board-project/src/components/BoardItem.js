@@ -1,9 +1,9 @@
 import classes from "./BoardItem.module.css";
 
-function BoardItem({ item }) {
+function BoardItem({ item, index }) {
   return (
     <div className={classes.item}>
-      <div>{item.id}</div>
+      <div>{index}</div>
       <div>{item.title}</div>
       <div>{item.creator}</div>
     </div>

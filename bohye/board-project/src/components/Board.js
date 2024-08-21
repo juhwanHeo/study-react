@@ -2,27 +2,7 @@ import React from "react";
 import BoardItem from "./BoardItem";
 import classes from "./Board.module.css";
 
-function Board() {
-  const items = [
-    {
-      id: 1,
-      title: "title 1",
-      content: "content 1",
-      creator: "creator 1",
-    },
-    {
-      id: 2,
-      title: "title 2",
-      content: "content 2",
-      creator: "creator 2",
-    },
-    {
-      id: 3,
-      title: "title 3",
-      content: "content 3",
-      creator: "creator 3",
-    },
-  ];
+function Board({ items }) {
   return (
     <div className={classes.main}>
       <header className={classes.cat}>
@@ -30,8 +10,8 @@ function Board() {
         <div className={classes.title}>Title</div>
         <div>Creator</div>
       </header>
-      {items.map((item) => (
-        <BoardItem key={item.id} item={item} />
+      {items.map((item, index) => (
+        <BoardItem key={index + 1} item={item} index={index + 1} />
       ))}
     </div>
   );
