@@ -1,46 +1,37 @@
-import Article from './Article';
-import { useState } from 'react';
+import BoardItem from './BoardItem';
+import { useEffect, useState } from 'react';
 
-function Board({ board }) {
-    const [articles, setArticles] = useState([]); 
+function Board({ items }) {
+    const [boardItems, setBoardItems] = useState(items); 
+
+    useEffect(() => {
+        getBoardItems()
+        .then(res => {
+            setBoardItems(res)
+        })
+    }, [])
+
     return(
         <section id="board">
-            <div id="board-title">
+            <div id="board-header">
                 <h1 onClick={()=> {
-                    setArticles(
-                        [
-                            {
-                              id: 1,
-                              title: "title 1",
-                              content: "content 1",
-                              creator: "creator 1"
-                            },
-                            {
-                              id: 2,
-                              title: "title 2",
-                              content: "content 2",
-                              creator: "creator 2"
-                            },
-                            {
-                              id: 3,
-                              title: "title 3",
-                              content: "content 3",
-                              creator: "creator 3"
-                            }
-                          ]
-                    )
-                    console.log(articles)
+                    console.log(boardItems)
                 }}>
-                    TEST
+                    Seq | Title | Creator
                 </h1>
                 <div>
                 </div>
             </div>
-            <div id="board-list" onClick={()=> {setArticles([])}}>
-                <Article articles={articles}></Article>
+            <div id="board-list" onClick={()=> {setBoardItems([])}}>
+                <BoardItem items={boardItems}></BoardItem>
             </div>
         </section>
     );
 }
+
+async function getBoardItems() {
+    const response = await fetch('http://heojh.iptime.org:8003/board');
+    return response.json();
+}  
 
 export default Board;
