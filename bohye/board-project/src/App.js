@@ -2,6 +2,17 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
 import "./App.css";
 
+const fetchData = async () => {
+  try {
+    const response = await fetch("http://heojh.iptime.org:8003/board");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
 function App() {
   const dummyItems = [
     {
@@ -27,17 +38,12 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://heojh.iptime.org:8003/board");
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const getItems = async () => {
+      const data = await fetchData();
+      setItems(data);
     };
 
-    fetchData();
+    getItems();
   }, []);
 
   return (

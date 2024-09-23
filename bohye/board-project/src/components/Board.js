@@ -10,9 +10,13 @@ function Board({ items }) {
         <div className={classes.title}>Title</div>
         <div>Creator</div>
       </header>
-      {items.map((item, index) => (
-        <BoardItem key={index + 1} item={item} index={index + 1} />
-      ))}
+      {items.length > 0 ? (
+        items.map((item, index) => (
+          <BoardItem key={index + 1} item={item} index={index + 1} />
+        ))
+      ) : (
+        <div className={classes.noPosts}>No contents..</div>
+      )}
     </div>
   );
 }
