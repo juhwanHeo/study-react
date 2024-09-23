@@ -4,7 +4,6 @@ function BoardItem({ items }) {
         return (<div>No Contents......</div>);
     }
     items.forEach((e, index) => {
-        console.log(e)
         list.push(
             <a key={e.id + index}>
                 <div>

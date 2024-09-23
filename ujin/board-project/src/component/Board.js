@@ -1,8 +1,8 @@
 import BoardItem from './BoardItem';
 import { useEffect, useState } from 'react';
 
-function Board({ items }) {
-    const [boardItems, setBoardItems] = useState(items); 
+function Board() {
+    const [boardItems, setBoardItems] = useState([]); 
 
     useEffect(() => {
         getBoardItems()
@@ -15,8 +15,7 @@ function Board({ items }) {
         <section id="board">
             <div id="board-header">
                 <h1 onClick={()=> {
-                    console.log(boardItems)
-                }}>
+                }}> 
                     Seq | Title | Creator
                 </h1>
                 <div>
