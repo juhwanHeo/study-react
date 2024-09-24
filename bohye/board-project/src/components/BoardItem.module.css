@@ -1,11 +1,15 @@
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.itemBox {
   border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .item > div {
@@ -16,4 +20,31 @@
 .item > div:nth-child(2),
 .item > div:nth-child(3) {
   flex: 2;
+}
+
+.content {
+  padding: 0 20px;
+  margin: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  color: #666;
+}
+
+.divider {
+  height: 14px;
+  width: 1px;
+  background-color: #ccc;
+  margin: 0 10px;
 }

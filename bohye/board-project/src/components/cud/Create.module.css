@@ -1,0 +1,24 @@
+.createContainer {
+  padding: 10px;
+}
+
+.createParagraph {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.createInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.createInputContainer input {
+  width: 40%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.createInputContainer button {
+  width: 10%;
+}
