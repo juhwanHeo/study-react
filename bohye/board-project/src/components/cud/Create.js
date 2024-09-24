@@ -2,21 +2,33 @@ import { useState } from "react";
 import classes from "./Create.module.css";
 
 function Create({ addItem }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [creator, setCreator] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    creator: "",
+  });
+
+  const inputChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const btnSubmitHandler = (e) => {
     e.preventDefault();
     const newItem = {
-      title: title,
-      content: content,
-      creator: creator,
+      title: formData.title,
+      content: formData.content,
+      creator: formData.creator,
     };
     addItem(newItem);
-    setTitle("");
-    setContent("");
-    setCreator("");
+    setFormData({
+      title: "",
+      content: "",
+      creator: "",
+    });
   };
 
   return (
@@ -28,22 +40,25 @@ function Create({ addItem }) {
             type="text"
             name="title"
             placeholder="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={formData.title}
+            onChange={inputChangeHandler}
+            required
           />
           <input
             type="text"
             name="content"
             placeholder="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={formData.content}
+            onChange={inputChangeHandler}
+            required
           ></input>
           <input
             type="text"
             name="creator"
             placeholder="creator"
-            value={creator}
-            onChange={(e) => setCreator(e.target.value)}
+            value={formData.creator}
+            onChange={inputChangeHandler}
+            required
           />
           <button type="submit">Create</button>
         </div>
