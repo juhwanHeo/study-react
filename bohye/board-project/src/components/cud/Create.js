@@ -60,7 +60,9 @@ function Create({ addItem }) {
             onChange={inputChangeHandler}
             required
           />
-          <button type="submit">Create</button>
+          <button type="submit" className={classes.btn}>
+            Create
+          </button>
         </div>
       </form>
     </div>

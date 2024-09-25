@@ -27,20 +27,26 @@ function App() {
     getItems();
   }, []);
 
-  const [isAppeared, setIsAppeared] = useState(false);
+  const [createMode, setCreateMode] = useState(false);
   const createAppear = () => {
-    setIsAppeared(!isAppeared);
+    setCreateMode(!createMode);
   };
 
   const addItem = (newItem) => {
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
+  const updateItem = (index, updatedItem) => {
+    setItems((prevItems) =>
+      prevItems.map((item, i) => (i === index ? updatedItem : item))
+    );
+  };
+
   return (
     <div className="top">
       <div className="board">Board</div>
-      <Board items={items} />
-      {isAppeared ? (
+      <Board items={items} updateItem={updateItem} />
+      {createMode ? (
         <Create addItem={addItem} />
       ) : (
         <button className="btn-create" onClick={createAppear}>

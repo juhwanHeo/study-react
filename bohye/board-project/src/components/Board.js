@@ -2,7 +2,7 @@ import React from "react";
 import BoardItem from "./BoardItem";
 import classes from "./Board.module.css";
 
-function Board({ items }) {
+function Board({ items, updateItem }) {
   return (
     <div className={classes.main}>
       <header className={classes.cat}>
@@ -12,7 +12,12 @@ function Board({ items }) {
       </header>
       {items.length > 0 ? (
         items.map((item, index) => (
-          <BoardItem key={index + 1} item={item} index={index + 1} />
+          <BoardItem
+            key={index + 1}
+            item={item}
+            index={index + 1}
+            updateItem={updateItem}
+          />
         ))
       ) : (
         <div className={classes.noPosts}>No contents..</div>

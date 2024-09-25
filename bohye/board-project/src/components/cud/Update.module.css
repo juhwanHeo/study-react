@@ -1,0 +1,54 @@
+.itemBox {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item > div {
+  flex: 1;
+  text-align: center;
+}
+
+.item > div:nth-child(2),
+.item > div:nth-child(3) {
+  flex: 2;
+}
+
+.content {
+  padding: 10px 20px 0 20px;
+  margin: 10px 0 0 0;
+  border-top: 1px solid #ccc;
+}
+
+.content > input {
+  width: 490px;
+  margin-bottom: 10px;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: #aaa;
+}
