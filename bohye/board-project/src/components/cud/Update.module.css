@@ -40,15 +40,6 @@
 }
 
 .btn {
-  cursor: pointer;
   padding: 5px 10px;
-  background-color: #ccc;
-  color: white;
-  border: none;
-  border-radius: 5px;
   margin-left: 10px;
-}
-
-.btn:hover {
-  background-color: #aaa;
 }

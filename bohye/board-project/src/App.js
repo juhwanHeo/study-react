@@ -7,12 +7,19 @@ const fetchData = async () => {
   try {
     const response = await fetch("http://heojh.iptime.org:8003/board");
     const data = await response.json();
-    console.log("responseData", data);
-    return data;
+    const dataWithIds = data.map((item) => ({
+      ...item,
+      id: generateId(),
+    }));
+    return dataWithIds;
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
+};
+
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 9);
 };
 
 function App() {
@@ -33,19 +40,28 @@ function App() {
   };
 
   const addItem = (newItem) => {
-    setItems((prevItems) => [...prevItems, newItem]);
+    const newItemWithId = {
+      ...newItem,
+      id: generateId(),
+    };
+    setItems((prevItems) => [...prevItems, newItemWithId]);
   };
 
-  const updateItem = (index, updatedItem) => {
+  const updateItem = (id, updatedItem) => {
     setItems((prevItems) =>
-      prevItems.map((item, i) => (i === index ? updatedItem : item))
+      prevItems.map((item) => (item.id === id ? updatedItem : item))
     );
+  };
+
+  const deleteItem = (id) => {
+    const newFilteredArray = items.filter((item) => item.id !== id);
+    setItems(newFilteredArray);
   };
 
   return (
     <div className="top">
       <div className="board">Board</div>
-      <Board items={items} updateItem={updateItem} />
+      <Board items={items} updateItem={updateItem} deleteItem={deleteItem} />
       {createMode ? (
         <Create addItem={addItem} />
       ) : (

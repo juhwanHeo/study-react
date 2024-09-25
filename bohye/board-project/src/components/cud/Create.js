@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./Create.module.css";
+import Button from "./../common/Button";
 
 function Create({ addItem }) {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ function Create({ addItem }) {
     }));
   };
 
-  const btnSubmitHandler = (e) => {
+  const handleCreateClick = (e) => {
     e.preventDefault();
     const newItem = {
       title: formData.title,
@@ -34,7 +35,7 @@ function Create({ addItem }) {
   return (
     <div className={classes.createContainer}>
       <p className={classes.createParagraph}>Create</p>
-      <form onSubmit={btnSubmitHandler}>
+      <form onSubmit={handleCreateClick}>
         <div className={classes.createInputContainer}>
           <input
             type="text"
@@ -60,9 +61,7 @@ function Create({ addItem }) {
             onChange={inputChangeHandler}
             required
           />
-          <button type="submit" className={classes.btn}>
-            Create
-          </button>
+          <Button className={classes.btn}>Create</Button>
         </div>
       </form>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import BoardItem from "./BoardItem";
 import classes from "./Board.module.css";
 
-function Board({ items, updateItem }) {
+function Board({ items, updateItem, deleteItem }) {
   return (
     <div className={classes.main}>
       <header className={classes.cat}>
@@ -17,6 +17,7 @@ function Board({ items, updateItem }) {
             item={item}
             index={index + 1}
             updateItem={updateItem}
+            deleteItem={deleteItem}
           />
         ))
       ) : (

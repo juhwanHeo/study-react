@@ -1,8 +1,9 @@
 import { useState } from "react";
 import classes from "./BoardItem.module.css";
 import Update from "./cud/Update";
+import Button from "./common/Button";
 
-function BoardItem({ item, index, updateItem }) {
+function BoardItem({ item, index, updateItem, deleteItem }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -16,8 +17,12 @@ function BoardItem({ item, index, updateItem }) {
   };
 
   const saveEdit = (updatedItem) => {
-    updateItem(index - 1, updatedItem);
+    updateItem(item.id, updatedItem);
     setEditMode(false);
+  };
+
+  const handleDelteClick = () => {
+    deleteItem(item.id);
   };
 
   return (
@@ -40,11 +45,16 @@ function BoardItem({ item, index, updateItem }) {
             <div className={classes.content}>
               <p>{item.content}</p>
               <div className={classes.btnBox}>
-                <button className={classes.btn} onClick={editAppear}>
-                  수정
-                </button>
-                <div className={classes.divider}></div>
-                <button className={classes.btn}>삭제</button>
+                <Button className={classes.btn} onClick={editAppear}>
+                  Update
+                </Button>
+                <Button
+                  className={classes.btn}
+                  onClick={handleDelteClick}
+                  type="button"
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           )}

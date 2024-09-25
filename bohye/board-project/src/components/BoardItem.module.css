@@ -35,16 +35,6 @@
 }
 
 .btn {
-  border: none;
-  outline: none;
-  background-color: inherit;
-  cursor: pointer;
-  color: #666;
-}
-
-.divider {
-  height: 14px;
-  width: 1px;
-  background-color: #ccc;
-  margin: 0 10px;
+  padding: 5px 10px;
+  margin-left: 10px;
 }

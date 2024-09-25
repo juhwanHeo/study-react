@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./Update.module.css";
+import Button from "../common/Button";
 
 function Update({ item, index, setEditMode, saveEdit }) {
   const [formEditData, setFormEditData] = useState({
@@ -62,16 +63,14 @@ function Update({ item, index, setEditMode, saveEdit }) {
           required
         />
         <div className={classes.btnBox}>
-          <button className={classes.btn} type="submit">
-            save
-          </button>
-          <button
+          <Button className={classes.btn}>save</Button>
+          <Button
             className={classes.btn}
             type="button"
             onClick={handleCancelClick}
           >
             cancel
-          </button>
+          </Button>
         </div>
       </div>
     </form>
