@@ -55,7 +55,7 @@ function App() {
       <div style={{padding: 5}}>
         <h1>과제 3</h1>
         {
-          boardItemsProps === null
+          boardItemsProps?.items.length === 0
             ? <div>loading...</div>
             : <Board items={boardItemsProps.items}/>
         }
