@@ -106,7 +106,7 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
       <div className='content'>
         {
           !items.length ?
-            <NoItem /> : items.map((item, index) => (<BoardItem key={ `key_${item.id}` } item={ item } onEditAction={(id) => {
+            <NoItem /> : items.map(item => (<BoardItem key={ `key_${item.id}` } item={ item } onEditAction={(id) => {
               setSelectedId(id)
               setIsAddShow(false)
               setIsEditShow(true)
