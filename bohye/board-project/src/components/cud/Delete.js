@@ -9,7 +9,7 @@ function Delete({ onDelete, className }) {
 
   return (
     <Button onClick={handleDeleteClick} className={className} type="button">
-      삭제
+      Delete
     </Button>
   );
 }

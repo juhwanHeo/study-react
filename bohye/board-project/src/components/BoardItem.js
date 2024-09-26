@@ -13,7 +13,7 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
 
   const [editMode, setEditMode] = useState(false);
 
-  const editAppear = () => {
+  const toggleEditMode = () => {
     setEditMode(!editMode);
   };
 
@@ -46,7 +46,7 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
             <div className={classes.content}>
               <p>{item.content}</p>
               <div className={classes.btnBox}>
-                <Button className={classes.btn} onClick={editAppear}>
+                <Button className={classes.btn} onClick={toggleEditMode}>
                   Update
                 </Button>
                 <Delete className={classes.btn} onDelete={handleDelete}>

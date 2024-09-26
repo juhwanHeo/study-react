@@ -3,7 +3,7 @@ import classes from "./Update.module.css";
 import Button from "../common/Button";
 
 function Update({ item, index, setEditMode, saveEdit }) {
-  const [formEditData, setFormEditData] = useState({
+  const [editFormData, setEditFormData] = useState({
     title: item.title,
     content: item.content,
     creator: item.creator,
@@ -11,7 +11,7 @@ function Update({ item, index, setEditMode, saveEdit }) {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    setFormEditData((prevData) => ({
+    setEditFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -21,9 +21,9 @@ function Update({ item, index, setEditMode, saveEdit }) {
     e.preventDefault();
     const updatedItem = {
       ...item,
-      title: formEditData.title,
-      content: formEditData.content,
-      creator: formEditData.creator,
+      title: editFormData.title,
+      content: editFormData.content,
+      creator: editFormData.creator,
     };
     saveEdit(updatedItem);
   };
@@ -39,7 +39,7 @@ function Update({ item, index, setEditMode, saveEdit }) {
           <input
             type="text"
             name="title"
-            value={formEditData.title}
+            value={editFormData.title}
             onChange={inputChangeHandler}
             required
           />
@@ -48,7 +48,7 @@ function Update({ item, index, setEditMode, saveEdit }) {
           <input
             type="text"
             name="creator"
-            value={formEditData.creator}
+            value={editFormData.creator}
             onChange={inputChangeHandler}
             required
           />
@@ -58,7 +58,7 @@ function Update({ item, index, setEditMode, saveEdit }) {
         <input
           type="text"
           name="content"
-          value={formEditData.content}
+          value={editFormData.content}
           onChange={inputChangeHandler}
           required
         />

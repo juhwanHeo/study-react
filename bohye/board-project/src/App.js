@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   const [createMode, setCreateMode] = useState(false);
-  const createAppear = () => {
+  const toggleCreateMode = () => {
     setCreateMode(!createMode);
   };
 
@@ -52,9 +52,9 @@ function App() {
       <div className="board">Board</div>
       <Board items={items} updateItem={updateItem} deleteItem={deleteItem} />
       {createMode ? (
-        <Create addItem={addItem} createAppear={createAppear} />
+        <Create addItem={addItem} toggleCreateMode={toggleCreateMode} />
       ) : (
-        <button className="btn-create" onClick={createAppear}>
+        <button className="btn-create" onClick={toggleCreateMode}>
           Create
         </button>
       )}

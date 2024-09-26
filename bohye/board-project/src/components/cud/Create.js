@@ -2,9 +2,8 @@ import { useState } from "react";
 import classes from "./Create.module.css";
 import Button from "./../common/Button";
 
-function Create({ addItem, createAppear }) {
-  const [formData, setFormData] = useState({
-    id: "",
+function Create({ addItem, toggleCreateMode }) {
+  const [createFormData, setCreateFormData] = useState({
     title: "",
     content: "",
     creator: "",
@@ -12,7 +11,7 @@ function Create({ addItem, createAppear }) {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setCreateFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -22,12 +21,10 @@ function Create({ addItem, createAppear }) {
     e.preventDefault();
     const newItem = {
       id: Math.random().toString(36).substring(2, 7),
-      title: formData.title,
-      content: formData.content,
-      creator: formData.creator,
+      ...createFormData,
     };
     addItem(newItem);
-    setFormData({
+    setCreateFormData({
       title: "",
       content: "",
       creator: "",
@@ -35,7 +32,7 @@ function Create({ addItem, createAppear }) {
   };
 
   const handleCreateMode = () => {
-    createAppear(false);
+    toggleCreateMode(false);
   };
 
   return (
@@ -49,7 +46,7 @@ function Create({ addItem, createAppear }) {
             type="text"
             name="title"
             placeholder="title"
-            value={formData.title}
+            value={createFormData.title}
             onChange={inputChangeHandler}
             required
           />
@@ -57,7 +54,7 @@ function Create({ addItem, createAppear }) {
             type="text"
             name="content"
             placeholder="content"
-            value={formData.content}
+            value={createFormData.content}
             onChange={inputChangeHandler}
             required
           ></input>
@@ -65,7 +62,7 @@ function Create({ addItem, createAppear }) {
             type="text"
             name="creator"
             placeholder="creator"
-            value={formData.creator}
+            value={createFormData.creator}
             onChange={inputChangeHandler}
             required
           />
