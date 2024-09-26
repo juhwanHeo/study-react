@@ -7,19 +7,12 @@ const fetchData = async () => {
   try {
     const response = await fetch("http://heojh.iptime.org:8003/board");
     const data = await response.json();
-    const dataWithIds = data.map((item) => ({
-      ...item,
-      id: generateId(),
-    }));
-    return dataWithIds;
+    console.log("response data", data);
+    return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
   }
-};
-
-const generateId = () => {
-  return Math.random().toString(36).substring(2, 9);
 };
 
 function App() {
@@ -40,11 +33,7 @@ function App() {
   };
 
   const addItem = (newItem) => {
-    const newItemWithId = {
-      ...newItem,
-      id: generateId(),
-    };
-    setItems((prevItems) => [...prevItems, newItemWithId]);
+    setItems((prevItems) => [...prevItems, newItem]);
   };
 
   const updateItem = (id, updatedItem) => {
@@ -63,7 +52,7 @@ function App() {
       <div className="board">Board</div>
       <Board items={items} updateItem={updateItem} deleteItem={deleteItem} />
       {createMode ? (
-        <Create addItem={addItem} />
+        <Create addItem={addItem} createAppear={createAppear} />
       ) : (
         <button className="btn-create" onClick={createAppear}>
           Create

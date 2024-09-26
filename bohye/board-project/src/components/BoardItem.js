@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./BoardItem.module.css";
 import Update from "./cud/Update";
 import Button from "./common/Button";
+import Delete from "./cud/Delete";
 
 function BoardItem({ item, index, updateItem, deleteItem }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -21,7 +22,7 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
     setEditMode(false);
   };
 
-  const handleDelteClick = () => {
+  const handleDelete = () => {
     deleteItem(item.id);
   };
 
@@ -48,13 +49,9 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
                 <Button className={classes.btn} onClick={editAppear}>
                   Update
                 </Button>
-                <Button
-                  className={classes.btn}
-                  onClick={handleDelteClick}
-                  type="button"
-                >
+                <Delete className={classes.btn} onDelete={handleDelete}>
                   Delete
-                </Button>
+                </Delete>
               </div>
             </div>
           )}

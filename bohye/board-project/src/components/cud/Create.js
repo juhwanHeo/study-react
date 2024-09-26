@@ -2,8 +2,9 @@ import { useState } from "react";
 import classes from "./Create.module.css";
 import Button from "./../common/Button";
 
-function Create({ addItem }) {
+function Create({ addItem, createAppear }) {
   const [formData, setFormData] = useState({
+    id: "",
     title: "",
     content: "",
     creator: "",
@@ -20,6 +21,7 @@ function Create({ addItem }) {
   const handleCreateClick = (e) => {
     e.preventDefault();
     const newItem = {
+      id: Math.random().toString(36).substring(2, 7),
       title: formData.title,
       content: formData.content,
       creator: formData.creator,
@@ -32,9 +34,15 @@ function Create({ addItem }) {
     });
   };
 
+  const handleCreateMode = () => {
+    createAppear(false);
+  };
+
   return (
     <div className={classes.createContainer}>
-      <p className={classes.createParagraph}>Create</p>
+      <p className={classes.createParagraph} onClick={handleCreateMode}>
+        Create
+      </p>
       <form onSubmit={handleCreateClick}>
         <div className={classes.createInputContainer}>
           <input
