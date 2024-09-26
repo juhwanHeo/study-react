@@ -6,9 +6,7 @@ import Create from "./components/cud/Create";
 const fetchData = async () => {
   try {
     const response = await fetch("http://heojh.iptime.org:8003/board");
-    const data = await response.json();
-    console.log("response data", data);
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
