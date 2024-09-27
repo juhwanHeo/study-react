@@ -26,7 +26,7 @@ const BoardItem = ({ id, seq, title, creator, setModal }: BoardItemProps) => {
           >update</div>
           <div
               onClick={() => {
-                setModal?.({mode: Mode.DELETE, boardItem: {id}});
+                setModal?.({mode: Mode.DELETE, boardItem: {id, title}});
               }}
           >delete</div>
         </div>
