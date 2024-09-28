@@ -1,0 +1,42 @@
+.list-item {
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.list-item:hover {
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
+}
+
+.list-item p {
+    font-size: 0.8rem;
+    color: #111;
+    font-weight: 500;
+}
+
+.list-item .seq {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-item .seq span {
+    display: inline-block;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background-color: limegreen;
+}
+
+.list-item .seq p {
+    margin-left: 0.5rem;
+}
+
+.list-item .seq span.inactive {
+    background-color: red;
+}
