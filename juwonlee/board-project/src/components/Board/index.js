@@ -99,7 +99,7 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
 }
 
 const loadItems = async () => {
-  const res = await fetch("http://heojh.iptime.org:8003/board");
+  const res = await fetch('http://heojh.iptime.org:8003/board');
   return await res.json();
 }
 
