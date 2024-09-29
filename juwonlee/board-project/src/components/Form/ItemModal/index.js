@@ -4,8 +4,11 @@ function ItemModal({ title, selectedItem, actionText, itemHandler, isShow, onClo
   const item = { ...selectedItem() }
 
   const onActionHandler = (item) => {
-    itemHandler(item)
-    onClose(false)
+    const { title, content, creator } = item
+    if (title?.trim() && content?.trim() && creator?.trim()) {
+      itemHandler(item)
+      onClose(false)
+    } else alert('값을 모두 올바르게 입력해야합니다.')
   }
 
   return (
