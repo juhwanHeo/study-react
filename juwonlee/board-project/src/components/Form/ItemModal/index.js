@@ -3,7 +3,7 @@ import Input from '../Input'
 function ItemModal({ title, selectedItem, actionText, itemHandler, isShow, onClose }) {
   const item = { ...selectedItem() }
 
-  const onActionandler = (item) => {
+  const onActionHandler = (item) => {
     itemHandler(item)
     onClose(false)
   }
@@ -17,7 +17,7 @@ function ItemModal({ title, selectedItem, actionText, itemHandler, isShow, onClo
         <Input id='input_content' type='text' label='content' value={item?.content || ''} onChange={(e) => item.content = e.target.value}/>
         <Input id='input_creator' type='text' label='creator' value={item?.creator || ''} onChange={(e) => item.creator = e.target.value}/>
         <div className='panel'>
-          <div className='add-btn' onClick={() => onActionandler(item)}>{ actionText || '확인' }</div>
+          <div className='add-btn' onClick={() => onActionHandler(item)}>{ actionText || '확인' }</div>
         </div>
       </div>
     </div>
