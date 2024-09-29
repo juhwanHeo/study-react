@@ -14,6 +14,9 @@ function Header() {
         <div className="creator">
           <p>Creator</p>
         </div>
+        <div className="action">
+          <p>Action</p>
+        </div>
       </div>
     </div>
   );
