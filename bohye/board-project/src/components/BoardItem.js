@@ -6,12 +6,11 @@ import Delete from "./cud/Delete";
 
 function BoardItem({ item, index, updateItem, deleteItem }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
-
-  const [editMode, setEditMode] = useState(false);
 
   const toggleEditMode = () => {
     setEditMode(!editMode);

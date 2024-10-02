@@ -15,6 +15,7 @@ const fetchData = async () => {
 
 function App() {
   const [items, setItems] = useState([]);
+  const [createMode, setCreateMode] = useState(false);
 
   useEffect(() => {
     const getItems = async () => {
@@ -25,7 +26,6 @@ function App() {
     getItems();
   }, []);
 
-  const [createMode, setCreateMode] = useState(false);
   const toggleCreateMode = () => {
     setCreateMode(!createMode);
   };

@@ -27,6 +27,7 @@ function Update({ item, index, setEditMode, saveEdit }) {
     };
     saveEdit(updatedItem);
   };
+
   const handleCancelClick = () => {
     setEditMode(false);
   };
