@@ -1,5 +1,4 @@
 .main {
-  width: 350px;
   margin: 10px;
   border: 1px solid black;
   border-radius: 10px;
@@ -13,7 +12,7 @@
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  background-color: azure;
+  background-color: #ddd;
   font-weight: bold;
 }
 
