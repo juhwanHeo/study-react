@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
     apiBoardItems().then(res => {
-      setBoardItemProps({items: res})
+      setBoardItemProps({items: res || []})
     });
   }, []);
 
