@@ -29,7 +29,7 @@ function App() {
     ]
   }
 
-  const [boardItemsProps, setBoardItemProps] = useState<BoardProps>({items: []});
+  const [boardItemsProps, setBoardItemsProps] = useState<BoardProps>({items: []});
 
   const apiBoardItems = async () => {
     const res = await fetch("http://heojh.iptime.org:8003/board");
@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
     apiBoardItems().then(res => {
-      setBoardItemProps({items: res})
+      setBoardItemsProps({items: res || []})
     });
   }, []);
 
@@ -55,7 +55,7 @@ function App() {
       <div style={{padding: 5}}>
         <h1>과제 3</h1>
         {
-          boardItemsProps === null
+          boardItemsProps?.items.length === 0
             ? <div>loading...</div>
             : <Board items={boardItemsProps.items}/>
         }
