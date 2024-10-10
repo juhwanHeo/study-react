@@ -90,7 +90,6 @@ const Board = ({items}: BoardProps) => {
         <div onClick={() => setModal({mode: Mode.CREATE})}>Create</div>
       </div>
 
-
       { modal?.mode !==  Mode.NONE
           ? <Modal
               mode={modal.mode}
