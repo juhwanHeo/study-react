@@ -14,6 +14,14 @@ const Create = ({create, onClose}: CreateProps) => {
         <div>creator: <input id={"edit-board-creator"} value={creator} onChange={(e) => setCreator(e.target.value)}/></div>
 
         <div onClick={() => {
+          if (!title?.trim()) {
+            alert("title 입력해주세요");
+            return;
+          }
+          if (!creator?.trim()) {
+            alert("creator 입력해주세요");
+            return;
+          }
           create?.(title, creator);
           onClose?.()
         }}>Create

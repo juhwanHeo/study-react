@@ -19,6 +19,10 @@ const Update = ({id, seq, title, creator, update, onClose}: UpdateProps) => {
         <div>creator: {creator}</div>
 
         <div onClick={() => {
+          if (!editTitle?.trim()) {
+            alert("title 입력해주세요");
+            return;
+          }
           update?.(id, editTitle);
           onClose?.()
         }}>Update</div>
