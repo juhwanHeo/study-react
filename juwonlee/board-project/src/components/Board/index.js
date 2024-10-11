@@ -7,7 +7,9 @@ import { ItemModal, AddBtn } from '../Form/ItemModal'
 function Board() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    loadItems().then((res) => setItems((res || []).map((item, index) => ({ seq: index+1, ...item }))))
+    loadItems().then((res) => setItems((res || [])
+      .map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item }))
+    ))
   }, []);
 
   const onAddItemHandler = (v) => {
@@ -15,15 +17,15 @@ function Board() {
   }
 
   const onEditItemHandler = (v) => {
-    const targetIndex = items.findIndex(item => item.id === v.id)
+    const targetIndex = items.findIndex(item => item.key === v.key)
     const tempArr = [...items]
     if (targetIndex > -1) tempArr[targetIndex] = { ...v }
     setItems(tempArr)
     alert('수정되었습니다.')
   }
 
-  const onRemoveItemHandler = (id) => {
-    const targetIndex = items.findIndex(item => item.id === id)
+  const onRemoveItemHandler = (key) => {
+    const targetIndex = items.findIndex(item => item.key === key)
     const tempArr = [...items]
     if (targetIndex > -1) tempArr.splice(targetIndex, 1)
     setItems(tempArr)
@@ -41,21 +43,22 @@ function Board() {
 function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
   const [isAddShow, setIsAddShow] = useState(false)
   const [isEditShow, setIsEditShow] = useState(false)
-  const [selectedId, setSelectedId] = useState(-1)
+  const [selectedKey, setSelectedKey] = useState(-1)
 
   const selectedItemHandler = () => {
     let item = null
 
-    if (selectedId < 0) {
+    if (selectedKey < 0) {
       item = {
-        id: crypto.randomUUID(),
+        key: crypto.randomUUID(),
+        id: `ID_${crypto.randomUUID()}`,
         seq: items.length + 1,
         title: '',
         content: '',
         creator: ''
       }
     } else {
-      const targetIndex = items.findIndex(item => item.id === selectedId)
+      const targetIndex = items.findIndex(item => item.key === selectedKey)
       if (targetIndex > -1) item = {...items[targetIndex]}
     }
 
@@ -65,7 +68,7 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
   const closeHandler = (flag) => {
     setIsAddShow(flag)
     setIsEditShow(flag)
-    setSelectedId(-1)
+    setSelectedKey(-1)
   }
 
   return (
@@ -73,13 +76,13 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
       <div className='content'>
         {
           !items.length ?
-            <NoItem /> : items.map(item => (<BoardItem key={ `key_${item.id}` } item={ item } onEditAction={(id) => {
-              setSelectedId(id)
+            <NoItem /> : items.map(item => (<BoardItem key={ item.key } item={ item } onEditAction={(key) => {
+              setSelectedKey(key)
               setIsAddShow(false)
               setIsEditShow(true)
-            }} onRemoveAction={(id) => {
-              setSelectedId(id)
-              onRemoveItem(id)
+            }} onRemoveAction={(key) => {
+              setSelectedKey(key)
+              onRemoveItem(key)
             }} />))
         }
       </div>
