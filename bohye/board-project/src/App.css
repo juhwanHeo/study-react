@@ -1,15 +1,28 @@
 .top {
+  width: 600px;
+  margin: 20px auto;
   display: flex;
-  justify-content: center;
-  align-items: start;
-  margin: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .board {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 25px;
   font-weight: bold;
   padding: 10px;
+}
+
+.btn-create {
+  width: 80px;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-create:hover {
+  background-color: #aaa;
 }

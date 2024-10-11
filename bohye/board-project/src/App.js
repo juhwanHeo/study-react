@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
 import "./App.css";
+import Create from "./components/cud/Create";
 
 const fetchData = async () => {
   try {
@@ -13,28 +14,8 @@ const fetchData = async () => {
 };
 
 function App() {
-  const dummyItems = [
-    {
-      id: 1,
-      title: "title 1",
-      content: "content 1",
-      creator: "creator 1",
-    },
-    {
-      id: 2,
-      title: "title 2",
-      content: "content 2",
-      creator: "creator 2",
-    },
-    {
-      id: 3,
-      title: "title 3",
-      content: "content 3",
-      creator: "creator 3",
-    },
-  ];
-
   const [items, setItems] = useState([]);
+  const [createMode, setCreateMode] = useState(false);
 
   useEffect(() => {
     const getItems = async () => {
@@ -45,16 +26,36 @@ function App() {
     getItems();
   }, []);
 
+  const toggleCreateMode = () => {
+    setCreateMode(!createMode);
+  };
+
+  const addItem = (newItem) => {
+    setItems((prevItems) => [...prevItems, newItem]);
+  };
+
+  const updateItem = (id, updatedItem) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === id ? updatedItem : item))
+    );
+  };
+
+  const deleteItem = (id) => {
+    const newFilteredArray = items.filter((item) => item.id !== id);
+    setItems(newFilteredArray);
+  };
+
   return (
     <div className="top">
-      <div>
-        <div className="board">과제1, 2</div>
-        <Board items={dummyItems} />
-      </div>
-      <div>
-        <div className="board">과제3</div>
-        <Board items={items} />
-      </div>
+      <div className="board">Board</div>
+      <Board items={items} updateItem={updateItem} deleteItem={deleteItem} />
+      {createMode ? (
+        <Create addItem={addItem} toggleCreateMode={toggleCreateMode} />
+      ) : (
+        <button className="btn-create" onClick={toggleCreateMode}>
+          Create
+        </button>
+      )}
     </div>
   );
 }
