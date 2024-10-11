@@ -1,0 +1,89 @@
+/* 전체 게시판 레이아웃 */
+.board {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.board-header {
+padding: 10px;
+background-color: #4CAF50;
+color: white;
+text-align: center;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+font-size: 1.5rem;
+}
+
+.board-body {
+padding: 20px;
+}
+
+.post {
+border-bottom: 1px solid #ddd;
+padding: 10px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.post:last-child {
+border-bottom: none;
+}
+
+.post-title {
+font-weight: bold;
+color: #333;
+}
+
+.post-date {
+color: #888;
+font-size: 0.9rem;
+}
+
+.post-button {
+background-color: #4CAF50;
+color: white;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.post-button:hover {
+background-color: #45a049;
+}
+
+.edit-button {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-button:hover {
+    background-color: #e68a00;
+  }
+  
+  /* 삭제 버튼 스타일 */
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
