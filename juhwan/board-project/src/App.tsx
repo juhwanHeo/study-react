@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
+import And from "./components/priority/And";
+import OR from "./components/priority/OR";
 
 function App() {
   const boardItems: BoardProps = {
@@ -45,20 +47,25 @@ function App() {
   return (
     <div className="App">
       {/*과제 1, 2 */}
-      <div style={{padding: 5}}>
-        <h1>과제 1, 2</h1>
-        <Board items={boardItems.items}/>
-      </div>
+      {/*<div style={{padding: 5}}>*/}
+      {/*  <h1>과제 1, 2</h1>*/}
+      {/*  <Board items={boardItems.items}/>*/}
+      {/*</div>*/}
 
-      {/*과제 3 */}
-      <br/>
-      <div style={{padding: 5}}>
-        <h1>과제 3</h1>
-        {
-          boardItemsProps?.items.length === 0
-            ? <div>loading...</div>
-            : <Board items={boardItemsProps.items}/>
-        }
+      {/*/!*과제 3 *!/*/}
+      {/*<br/>*/}
+      {/*<div style={{padding: 5}}>*/}
+      {/*  <h1>과제 3</h1>*/}
+      {/*  {*/}
+      {/*    boardItemsProps?.items.length === 0*/}
+      {/*      ? <div>loading...</div>*/}
+      {/*      : <Board items={boardItemsProps.items}/>*/}
+      {/*  }*/}
+      {/*</div>*/}
+
+      <div>
+        <And/>
+        <OR/>
       </div>
     </div>
   );
