@@ -8,7 +8,7 @@ function Board() {
 
     function createPost() {
         const newItem = {
-            "id": boardItems.length + 1,
+            "id": window.crypto.randomUUID(),
             "title": `title ${boardItems.length + 1}`,
             "content": `blabla ${boardItems.length + 1}`,
             "creator": `creator ${boardItems.length + 1}`
