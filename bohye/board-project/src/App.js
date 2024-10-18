@@ -36,14 +36,14 @@ function App() {
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
-  const updateItem = (id, updatedItem) => {
+  const updateItem = (key, updatedItem) => {
     setItems((prevItems) =>
-      prevItems.map((item) => (item.id === id ? updatedItem : item))
+      prevItems.map((item) => (item.key === key ? updatedItem : item))
     );
   };
 
-  const deleteItem = (id) => {
-    const newFilteredArray = items.filter((item) => item.id !== id);
+  const deleteItem = (key) => {
+    const newFilteredArray = items.filter((item) => item.key !== key);
     setItems(newFilteredArray);
   };
 
