@@ -20,7 +20,7 @@ function Create({ addItem, toggleCreateMode }) {
   const handleCreateClick = (e) => {
     e.preventDefault();
     const newItem = {
-      id: Math.random().toString(36).substring(2, 7),
+      key: crypto.randomUUID(),
       ...createFormData,
     };
     addItem(newItem);
