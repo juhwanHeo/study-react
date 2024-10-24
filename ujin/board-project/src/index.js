@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Board from './component/Board';
+import And from './component/priority/And';
+import OR from './component/priority/OR';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -9,6 +11,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Board/>
+    AND:
+    <And />
+    OR:
+    <OR />
   </React.StrictMode>
 );
 
