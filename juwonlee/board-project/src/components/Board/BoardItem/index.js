@@ -1,14 +1,14 @@
 import  './BoardItem.css'
 
 function BoardItem({ item, onEditAction, onRemoveAction }) {
-  const { id, seq, title, creator } = item
+  const { key, id, seq, title, creator } = item
 
   const removeActionHandler = () => {
-    if (window.confirm('선택한 항목을 삭제할까요? \n다시 되돌릴 수 없습니다.')) onRemoveAction(id)
+    if (window.confirm('선택한 항목을 삭제할까요? \n다시 되돌릴 수 없습니다.')) onRemoveAction(key)
   }
 
   return (
-    <div className="list-item" key={id}>
+    <div className="list-item" key={key} data-id={id}>
       <div className="seq">
         <span></span>
         <p>{seq}</p>
@@ -20,7 +20,7 @@ function BoardItem({ item, onEditAction, onRemoveAction }) {
         <p>{creator}</p>
       </div>
       <div className="action">
-        <button onClick={() => onEditAction(id) }>수정</button>
+        <button onClick={() => onEditAction(key) }>수정</button>
         <button onClick={ removeActionHandler }>삭제</button>
       </div>
     </div>
