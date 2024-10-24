@@ -77,7 +77,7 @@ const Board = ({items}: BoardProps) => {
             ? <NoContent/>
             : boardItems.map((item, idx) => (
                 <BoardItem
-                    key={idx}
+                    key={crypto.randomUUID()}
                     id={item.id}
                     seq={idx}
                     title={item.title}
