@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react'
 import BoardHeader from './BoardHeader';
 import BoardItem from './BoardItem';
 
@@ -17,4 +17,29 @@ function Board() {
 	);
 }
 
-export default Board;
+function RemoteBoard() {
+	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		fetch("http://heojh.iptime.org:8003/board")
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setItems(data || []);
+			})
+			.catch((e) => {
+				console.error('Fetch error:', e);
+				setItems([]);
+			});
+	}, []);
+
+	return (
+		<div className="board">
+			<BoardHeader />
+			<BoardItem items={items} />
+		</div>
+	);
+}
+
+export { Board, RemoteBoard };
