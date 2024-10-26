@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
-import And from "./components/priority/And";
-import OR from "./components/priority/OR";
 
 function App() {
   const boardItems: BoardProps = {
@@ -62,11 +60,6 @@ function App() {
             : <Board items={boardItemsProps.items}/>
         }
       </div>
-
-      {/*<div>*/}
-      {/*  <And/>*/}
-      {/*  <OR/>*/}
-      {/*</div>*/}
     </div>
   );
 }
