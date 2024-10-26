@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Board from './components/board';
+import { Board, RemoteBoard } from './components/board';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Board />
+    <br/>
+    <RemoteBoard />
   </React.StrictMode>
 );
 
