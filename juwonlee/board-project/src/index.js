@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Board from './components/Board';
-import reportWebVitals from './reportWebVitals';
+import And from './components/priority/And'
+import OR from './components/priority/OR'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Board />
+    <hr />
+    <And />
+    <OR />
   </React.StrictMode>
 );
 

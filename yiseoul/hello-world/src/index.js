@@ -1,21 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Board from './component/Board';
-import And from './component/priority/And';
-import OR from './component/priority/OR';
 import reportWebVitals from './reportWebVitals';
+import {Hello} from "./components/Hello";
+import {Menu} from "./components/Menu";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
-  <React.StrictMode>
-    <Board/>
-    AND:
-    <And />
-    OR:
-    <OR />
-  </React.StrictMode>
+    <React.StrictMode>
+        <Hello/>
+        <hr/>
+
+        <Menu
+            link={"https://www.naver.com"}
+            name={"네이버"}
+        />
+
+        <Menu
+            link={"https://www.google.com"}
+            name={"구글"}
+        />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

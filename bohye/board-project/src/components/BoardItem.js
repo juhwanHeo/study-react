@@ -17,12 +17,12 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
   };
 
   const saveEdit = (updatedItem) => {
-    updateItem(item.id, updatedItem);
+    updateItem(updatedItem.key, updatedItem);
     setEditMode(false);
   };
 
   const handleDelete = () => {
-    deleteItem(item.id);
+    deleteItem(item.key);
   };
 
   return (
