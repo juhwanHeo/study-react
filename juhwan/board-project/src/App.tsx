@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
+import Accordion from "./components/up-state/Accodion";
 
 function App() {
   const boardItems: BoardProps = {
@@ -60,6 +61,8 @@ function App() {
             : <Board items={boardItemsProps.items}/>
         }
       </div>
+
+      <Accordion />
     </div>
   );
 }
