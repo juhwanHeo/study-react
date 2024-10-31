@@ -1,5 +1,5 @@
 import {ModalMethodProps} from "./Modal";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 interface UpdateProps extends ModalMethodProps {
   id: number;
@@ -9,21 +9,26 @@ interface UpdateProps extends ModalMethodProps {
 }
 
 const Update = ({id, seq, title, creator, update, onClose}: UpdateProps) => {
-  const [editTitle, setEditTitle] = useState<string>(title|| "");
+  // const [editTitle, setEditTitle] = useState<string>(title|| "");
+  const editTitle = useRef<HTMLInputElement | null>(null);
 
+  useEffect(() => {
+    if (!editTitle.current) return;
+    editTitle.current.value = title || "";
+  }, []);
 
   return (
       <>
         <div>seq: {seq}</div>
-        <div>title: <input id={"edit-board-title"} value={editTitle} onChange={(e) => setEditTitle(e.target.value)}/></div>
+        <div>title: <input id={"edit-board-title"} ref={editTitle}/></div>
         <div>creator: {creator}</div>
 
         <div onClick={() => {
-          if (!editTitle?.trim()) {
+          if (!editTitle?.current?.value.trim()) {
             alert("title 입력해주세요");
             return;
           }
-          update?.(id, editTitle);
+          update?.(id, editTitle?.current?.value);
           onClose?.()
         }}>Update</div>
         <div onClick={() => {

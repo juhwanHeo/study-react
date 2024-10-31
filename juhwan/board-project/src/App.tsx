@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
-import And from "./components/priority/And";
-import OR from "./components/priority/OR";
+import Accordion from "./components/up-state/Accodion";
 
 function App() {
   const boardItems: BoardProps = {
@@ -63,10 +62,7 @@ function App() {
         }
       </div>
 
-      {/*<div>*/}
-      {/*  <And/>*/}
-      {/*  <OR/>*/}
-      {/*</div>*/}
+      <Accordion />
     </div>
   );
 }
