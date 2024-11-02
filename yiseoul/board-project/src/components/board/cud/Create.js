@@ -2,11 +2,11 @@ import {useEffect, useState} from "react";
 
 const Create = ({event}) => {
   const [toggle, setToggle] = useState(false);
-  const [item, setItem] = useState({ title: '', creator: '' });
+  const [item, setItem] = useState({title: '', creator: ''});
 
   useEffect(() => {
     if (!toggle) {
-      setItem({ title: '', creator: '' });
+      setItem({title: '', creator: ''});
     }
   }, [toggle]);
 
