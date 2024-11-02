@@ -1,4 +1,3 @@
-
 import './board.css';
 import Delete from "./cud/Delete";
 import Update from "./cud/Update";
