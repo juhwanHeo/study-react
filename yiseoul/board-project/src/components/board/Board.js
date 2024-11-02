@@ -2,44 +2,21 @@ import { useState, useEffect } from 'react'
 import BoardHeader from './BoardHeader';
 import BoardItem from './BoardItem';
 
-function Board() {
-	const items = [
-		{ seq: 1, title: 'title 1', content: 'content 1', creator: 'creator 1' },
-		{ seq: 2, title: 'title 2', content: 'content 2', creator: 'creator 2' },
-		{ seq: 3, title: 'title 3', content: 'content 3', creator: 'creator 3' },
-	];
+function Board({boardItems}) {
+  const [items, setItems] = useState([]);
 
-	return (
-		<div className="board">
-			<BoardHeader />
-			<BoardItem items={items} />
-		</div>
-	);
+  useEffect(() => {
+    const validItems = Array.isArray(boardItems) ? boardItems : [];
+    setItems(validItems.map((item) => ({key: crypto.randomUUID(), ...item})));
+  }, [boardItems]);
+
+
+  return (
+    <div className="board">
+      <BoardHeader />
+      <BoardItem items={items} />
+    </div>
+  );
 }
 
-function RemoteBoard() {
-	const [items, setItems] = useState([]);
-
-	useEffect(() => {
-		fetch("http://heojh.iptime.org:8003/board")
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				setItems(data || []);
-			})
-			.catch((e) => {
-				console.error('Fetch error:', e);
-				setItems([]);
-			});
-	}, []);
-
-	return (
-		<div className="board">
-			<BoardHeader />
-			<BoardItem items={items} />
-		</div>
-	);
-}
-
-export { Board, RemoteBoard };
+export default Board;
