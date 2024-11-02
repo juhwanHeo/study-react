@@ -14,8 +14,8 @@ function BoardItem({items}) {
       {items.length === 0 ? (
         <NoItem />
       ) : (
-        items.map(({seq, title, creator}, index) => (
-          <div className="board-row" key={seq}>
+        items.map(({seq, title, creator, key}, index) => (
+          <div className="board-row" key={key}>
             <div className="board-item">{seq || index + 1}</div>
             <div className="board-item">{title}</div>
             <div className="board-item">{creator}</div>
