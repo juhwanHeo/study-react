@@ -1,5 +1,4 @@
 import "../Board.css";
-import { useRef } from "react";
 
 function Update({ titleId, titleRef }) {
     return (
