@@ -17,19 +17,6 @@ function Board() {
         setBoardItems(items)
     }
     
-    function editPost(id) {
-        const newTitle = prompt("새로운 title")
-        let items = boardItems
-
-        items = items.map((item) => {
-            if (item.id === id) {
-                item = { ...item, 'title': newTitle }
-            }
-            return item
-        })
-        setBoardItems(items)
-    }
-    
     function deletePost(id) {
         if (!window.confirm("정말 삭제하시겠습니까?")) {
             return true
@@ -43,6 +30,9 @@ function Board() {
     useEffect(() => {
         getBoardItems()
         .then(res => {
+            res.map((item) => {
+                item.id = window.crypto.randomUUID()
+            })
             setBoardItems(res)
         })
     }, [])
@@ -53,13 +43,13 @@ function Board() {
                 <div className="board-header">
                     <h1 onClick={()=> {
                     }}> 
-                        Seq | Title | Creator | etc
+                        ID | Title | Creator | etc
                     </h1>
                     <div>
                     </div>
                 </div>
                 <div>
-                    <BoardItem items={boardItems} onEdit={ editPost } onDelete={ deletePost }></BoardItem>
+                    <BoardItem items={boardItems} onDelete={ deletePost }></BoardItem>
                 </div>
             </section>
             <Create onClick={ createPost }/>
