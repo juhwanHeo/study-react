@@ -28,6 +28,12 @@
   border-left: 1px solid #ddd;
 }
 
+.board-item.row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
 .board-item:first-child {
   border-left: none;
 }

@@ -9,7 +9,7 @@ const useRemoteItems  = () => {
       try {
         const response = await fetch("http://heojh.iptime.org:8003/board");
         const data = await response.json();
-        setRemoteItems(data);
+        setRemoteItems(data.map((item, index) => {return {...item, seq: index+1}}));
       } catch (e) {
         console.error('fetch error:', e);
         setRemoteItems([]);

@@ -4,6 +4,7 @@ function BoardHeader() {
       <div className="board-header-item">Seq</div>
       <div className="board-header-item">Title</div>
       <div className="board-header-item">Creator</div>
+      <div className="board-header-item">Ect</div>
     </div>
   );
 }
