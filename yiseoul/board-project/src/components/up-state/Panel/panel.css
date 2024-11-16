@@ -1,0 +1,6 @@
+.panel {
+  border: 1px solid black;
+  box-shadow: #3e3e3e 1px 1px 1px;
+  margin: 3px;
+  padding: 5px;
+}
