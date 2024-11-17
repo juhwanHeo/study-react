@@ -1,29 +1,19 @@
-import { useState } from "react";
+import { useRef } from "react";
 import classes from "./Update.module.css";
 import Button from "../common/Button";
 
 function Update({ item, index, setEditMode, saveEdit }) {
-  const [editFormData, setEditFormData] = useState({
-    title: item.title,
-    content: item.content,
-    creator: item.creator,
-  });
-
-  const inputChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setEditFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const titleRef = useRef();
+  const contentRef = useRef();
+  const creatorRef = useRef();
 
   const handleSaveClick = (e) => {
     e.preventDefault();
     const updatedItem = {
       ...item,
-      title: editFormData.title,
-      content: editFormData.content,
-      creator: editFormData.creator,
+      title: titleRef.current.value,
+      content: contentRef.current.value,
+      creator: creatorRef.current.value,
     };
     saveEdit(updatedItem);
   };
@@ -40,8 +30,8 @@ function Update({ item, index, setEditMode, saveEdit }) {
           <input
             type="text"
             name="title"
-            value={editFormData.title}
-            onChange={inputChangeHandler}
+            defaultValue={item.title}
+            ref={titleRef}
             required
           />
         </div>
@@ -49,8 +39,8 @@ function Update({ item, index, setEditMode, saveEdit }) {
           <input
             type="text"
             name="creator"
-            value={editFormData.creator}
-            onChange={inputChangeHandler}
+            defaultValue={item.creator}
+            ref={creatorRef}
             required
           />
         </div>
@@ -59,8 +49,8 @@ function Update({ item, index, setEditMode, saveEdit }) {
         <input
           type="text"
           name="content"
-          value={editFormData.content}
-          onChange={inputChangeHandler}
+          defaultValue={item.content}
+          ref={contentRef}
           required
         />
         <div className={classes.btnBox}>
