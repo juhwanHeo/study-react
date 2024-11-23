@@ -34,6 +34,7 @@ function App() {
   const [boardItemsProps, setBoardItemsProps] = useState<BoardProps>({items: []});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filterTitle, setFilterTitle] = useState<string>("");
+  const isEmptyBoardItem = boardItemsProps?.items.length === 0;
 
   const apiBoardItems = async (title: string = "") => {
     setIsLoading(true);
@@ -77,9 +78,12 @@ function App() {
         <button onClick={onClick}>Search</button>
 
         {
-          boardItemsProps?.items.length === 0
-            ? <div>loading...</div>
-            : <Board items={boardItemsProps.items}/>
+          isLoading
+            ? <div>Loading...</div>
+            : isEmptyBoardItem
+                ? <div>not found...</div>
+                : <Board items={boardItemsProps.items}/>
+
         }
       </div>
 
