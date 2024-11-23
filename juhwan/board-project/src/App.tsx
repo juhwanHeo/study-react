@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
 import Accordion from "./components/up-state/Accodion";
+import Search from "./components/board/Search";
 
 function App() {
   const boardItems: BoardProps = {
@@ -32,6 +33,7 @@ function App() {
 
   const [boardItemsProps, setBoardItemsProps] = useState<BoardProps>({items: []});
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [filterTitle, setFilterTitle] = useState<string>("");
 
   const apiBoardItems = async (title: string = "") => {
     setIsLoading(true);
@@ -39,6 +41,18 @@ function App() {
 
     setIsLoading(false);
     return await res.json();
+  }
+
+  const onClick = () => {
+    clear().then(() => {
+      apiBoardItems(filterTitle).then(res => {
+        setBoardItemsProps({items: res || []})
+      })
+    })
+  }
+
+  const clear = async () => {
+    setBoardItemsProps({items:[]});
   }
 
   useEffect(() => {
@@ -59,6 +73,9 @@ function App() {
       <br/>
       <div style={{padding: 5}}>
         {/*<h1>과제 3</h1>*/}
+        <Search filterText={filterTitle} onFilterTextChange={setFilterTitle}/>
+        <button onClick={onClick}>Search</button>
+
         {
           boardItemsProps?.items.length === 0
             ? <div>loading...</div>
