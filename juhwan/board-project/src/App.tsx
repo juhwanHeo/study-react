@@ -31,9 +31,13 @@ function App() {
   }
 
   const [boardItemsProps, setBoardItemsProps] = useState<BoardProps>({items: []});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const apiBoardItems = async () => {
-    const res = await fetch("http://heojh.iptime.org:8003/board");
+  const apiBoardItems = async (title: string = "") => {
+    setIsLoading(true);
+    const res = await fetch(`http://heojh.iptime.org:8003/board?title=${title}`);
+
+    setIsLoading(false);
     return await res.json();
   }
 
