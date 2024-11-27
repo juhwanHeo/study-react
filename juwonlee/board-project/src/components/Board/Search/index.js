@@ -16,7 +16,7 @@ function Search({ value, label, onSearch }) {
     if (e.keyCode === 13) onSearchHandler(condition)
   }
 
-  const onButtonClickHandler = (e) => {
+  const onButtonClickHandler = () => {
     onSearchHandler(condition)
   }
 
