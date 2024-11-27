@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import  './Input.css'
 
-function Input({ type, id, label, value, hint, onChange, onKeyDown }) {
+function Input({ type, id, label, value, onChange, onKeyDown }) {
   const [inputValue, setInputValue] = useState('')
   useEffect(() => {
     setInputValue(value || '')
@@ -18,7 +18,7 @@ function Input({ type, id, label, value, hint, onChange, onKeyDown }) {
 
   return (
     <div className='input-group'>
-      <input type={ type || 'text' } name='' id={ id } placeholder={ hint || ' ' } value={ inputValue } onChange={ onChangeHandler } onKeyDown={ onKeyDownHandler } />
+      <input type={ type || 'text' } name='' id={ id } placeholder=' ' value={ inputValue } onChange={ onChangeHandler } onKeyDown={ onKeyDownHandler } />
       <label htmlFor={ id }>{ label }</label>
     </div>
   );
