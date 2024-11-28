@@ -36,11 +36,13 @@ function Board({boardItems, useCreate, useDelete, useEdit}) {
 
 
   return (
+    <div className="board-container">
       <div className="board">
         <BoardHeader/>
         <BoardItem items={items} onDelete={handleDelete} onUpdate={handleEdit} />
         <Create event={handleCreate}></Create>
       </div>
+    </div>
   );
 }
 
