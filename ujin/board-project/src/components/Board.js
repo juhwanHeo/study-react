@@ -2,6 +2,7 @@ import BoardItem from './BoardItem';
 import Create from "./cud/Create";
 import "./Board.css";
 import { useEffect, useState } from 'react';
+import Search from './Board/Search';
 
 function Board() {
     const [boardItems, setBoardItems] = useState([]); 
@@ -39,6 +40,9 @@ function Board() {
 
     return(
         <div>
+            <section className="searchBar">
+                <Search setItems={ setBoardItems } />
+            </section>
             <section className="board">
                 <div className="board-header">
                     <h1 onClick={()=> {
