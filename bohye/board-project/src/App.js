@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
 import "./App.css";
 import Create from "./components/cud/Create";
-import And from "./components/priority/And";
-import Or from "./components/priority/Or";
+import Accordion from "./components/up-state/Accodion";
 
 const fetchData = async () => {
   try {
@@ -58,8 +57,7 @@ function App() {
           Create
         </button>
       )}
-      <And />
-      <Or />
+      <Accordion />
     </div>
   );
 }
