@@ -34,7 +34,6 @@ function Board({boardItems, useCreate, useDelete, useEdit}) {
     setItems([...items, newItem]);
   };
 
-
   return (
       <div className="board">
         <BoardHeader/>
