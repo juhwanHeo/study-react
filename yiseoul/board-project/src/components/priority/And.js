@@ -1,4 +1,3 @@
-
 function AndItem() {
   return (
       <div>
