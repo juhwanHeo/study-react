@@ -5,6 +5,15 @@
   margin: 0 10px;
 }
 
+.searchInputGroup {
+  position: relative;
+}
+
+.searchInputBox {
+  display: flex;
+  align-items: center;
+}
+
 .searchInput {
   padding: 5px 10px;
   margin-right: 10px;
@@ -12,4 +21,13 @@
 
 .searchBtn {
   padding: 5px 10px;
+}
+
+.searchErrorMsg {
+  font-size: 10px;
+  color: red;
+  margin: 5px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
 }
