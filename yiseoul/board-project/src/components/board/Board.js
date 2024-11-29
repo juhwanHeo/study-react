@@ -46,7 +46,7 @@ function Board({boardItems, useCreate, useDelete, useEdit}) {
 
   const handleSearch = (value) => {
     setInqValue(value);
-  }
+  };
 
   return (
     <div className="board-container">
