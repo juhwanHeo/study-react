@@ -5,24 +5,3 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-
-.board {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.btn-create {
-  width: 80px;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #ccc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-create:hover {
-  background-color: #aaa;
-}
