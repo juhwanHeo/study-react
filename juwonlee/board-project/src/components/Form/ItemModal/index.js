@@ -19,9 +19,9 @@ function ItemModal({ title, selectedItem, actionText, itemHandler, isShow, onClo
         {
           isShow ?
             <div>
-              <Input id='input_title' type='text' label='title' value={item?.title || ''} onChange={(e) => item.title = e.target.value}/>
-              <Input id='input_content' type='text' label='content' value={item?.content || ''} onChange={(e) => item.content = e.target.value}/>
-              <Input id='input_creator' type='text' label='creator' value={item?.creator || ''} onChange={(e) => item.creator = e.target.value}/>
+              <Input id='input_title' type='text' label='title' value={ item?.title || '' } onChange={(e) => item.title = e.target.value}/>
+              <Input id='input_content' type='text' label='content' value={ item?.content || '' } onChange={(e) => item.content = e.target.value}/>
+              <Input id='input_creator' type='text' label='creator' value={ item?.creator || '' } onChange={(e) => item.creator = e.target.value}/>
             </div>
             : null
         }

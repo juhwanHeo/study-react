@@ -1,0 +1,28 @@
+.search {
+    margin-bottom: -3rem;
+    padding: 3rem 3rem 0.5rem;
+}
+
+.search-wrap {
+    display: flex;
+    padding: 1rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3e3e3e;
+    border-bottom: 3px solid black;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-btn {
+    width: 2rem;
+}
+
+.search-wrap .input-group {
+    width: 100%;
+    margin: 6px;
+}
+
+.search-wrap .input-group input {
+    color: white;
+}
