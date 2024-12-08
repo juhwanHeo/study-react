@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Board, {BoardProps} from "./components/board/Board";
 import Accordion from "./components/up-state/Accodion";
+import Search from "./components/board/Search";
 
 function App() {
   const boardItems: BoardProps = {
@@ -31,10 +32,28 @@ function App() {
   }
 
   const [boardItemsProps, setBoardItemsProps] = useState<BoardProps>({items: []});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [filterTitle, setFilterTitle] = useState<string>("");
+  const isEmptyBoardItem = boardItemsProps?.items.length === 0;
 
-  const apiBoardItems = async () => {
-    const res = await fetch("http://heojh.iptime.org:8003/board");
+  const apiBoardItems = async (title: string = "") => {
+    setIsLoading(true);
+    const res = await fetch(`http://heojh.iptime.org:8003/board?title=${title}`);
+
+    setIsLoading(false);
     return await res.json();
+  }
+
+  const onClick = () => {
+    clear().then(() => {
+      apiBoardItems(filterTitle).then(res => {
+        setBoardItemsProps({items: res || []})
+      })
+    })
+  }
+
+  const clear = async () => {
+    setBoardItemsProps({items:[]});
   }
 
   useEffect(() => {
@@ -45,24 +64,30 @@ function App() {
 
   return (
     <div className="App">
-      과제 1, 2
-      <div style={{padding: 5}}>
-        <h1>과제 1, 2</h1>
-        <Board items={boardItems.items}/>
-      </div>
+      {/*과제 1, 2*/}
+      {/*<div style={{padding: 5}}>*/}
+      {/*  <h1>과제 1, 2</h1>*/}
+      {/*  <Board items={boardItems.items}/>*/}
+      {/*</div>*/}
 
       {/*과제 3 */}
       <br/>
       <div style={{padding: 5}}>
-        <h1>과제 3</h1>
+        {/*<h1>과제 3</h1>*/}
+        <Search filterText={filterTitle} onFilterTextChange={setFilterTitle}/>
+        <button onClick={onClick}>Search</button>
+
         {
-          boardItemsProps?.items.length === 0
-            ? <div>loading...</div>
-            : <Board items={boardItemsProps.items}/>
+          isLoading
+            ? <div>Loading...</div>
+            : isEmptyBoardItem
+                ? <div>not found...</div>
+                : <Board items={boardItemsProps.items}/>
+
         }
       </div>
 
-      <Accordion />
+      {/*<Accordion />*/}
     </div>
   );
 }
