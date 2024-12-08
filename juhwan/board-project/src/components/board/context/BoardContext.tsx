@@ -33,7 +33,7 @@ export const BoardDispatchContext = createContext<BoardDispatch | null>(null);
 function reducer(state: Array<BoardItem>, action: BoardAction) {
     switch (action.type) {
         case BoardActionType.SEARCH_BOARD_ITEM: {
-            return [];
+            return [...action.boardItems];
         }
         case BoardActionType.CREATE_BOARD_ITEM: {
             return [...state, action.boardItem];
