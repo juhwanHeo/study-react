@@ -1,17 +1,15 @@
-import BoardItem, {BoardItemProps} from "./BoardItem";
+import BoardItem from "./BoardItem";
 import './css/board-style.css';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Modal, {ModalProps} from "./cud/Modal";
+import { BoardContext } from "./context/BoardContext";
+import Search from "./Search";
 
 export enum Mode {
   NONE,
   CREATE,
   UPDATE,
   DELETE,
-}
-
-export interface BoardProps {
-  items: Array<BoardItemProps>
 }
 
 const BoardHeader = () => {
@@ -31,9 +29,9 @@ const NoContent = () => {
   );
 }
 
-const Board = ({items}: BoardProps) => {
+const Board = () => {
   const [modal, setModal] = useState<ModalProps>({mode: Mode.NONE});
-  const [boardItems, setBoardItems] = useState<Array<BoardItemProps>>([...items]);
+  const boardItems = useContext(BoardContext) || [];
 
   const createItem = (title: string, creator: string) => {
     let index = boardItems.length + 1;
@@ -42,8 +40,6 @@ const Board = ({items}: BoardProps) => {
       title: title,
       creator: creator,
     }
-
-    setBoardItems((prevState) => [...prevState, newItem]);
   }
 
   const updateItem = (id: number, title: string) => {
@@ -55,13 +51,9 @@ const Board = ({items}: BoardProps) => {
         break;
       }
     }
-
-    setBoardItems(newBoardItems);
   }
 
   const removeItem = (id: number) => {
-    const filteredBoardItems = boardItems.filter((boardItem) => boardItem.id !== id);
-    setBoardItems(filteredBoardItems);
   }
 
   const onClose = () => {
@@ -70,6 +62,7 @@ const Board = ({items}: BoardProps) => {
 
   return (
     <>
+      <Search/>
       <div className={"board-wrapper"}>
         <BoardHeader/>
         {
