@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Board from './components/Board';
-import Accodion from './components/up-state/Accodion';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Board />
-    <hr />
-    <Accodion />
   </React.StrictMode>
 );
 
