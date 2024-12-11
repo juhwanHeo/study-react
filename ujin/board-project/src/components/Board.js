@@ -2,6 +2,7 @@ import BoardItem from './BoardItem';
 import Create from "./cud/Create";
 import "./Board.css";
 import { useEffect, useState } from 'react';
+import Search from './Board/Search';
 
 function Board() {
     const [boardItems, setBoardItems] = useState([]); 
@@ -14,19 +15,6 @@ function Board() {
             "creator": `creator ${boardItems.length + 1}`
         }
         let items = [...boardItems, newItem]
-        setBoardItems(items)
-    }
-    
-    function editPost(id) {
-        const newTitle = prompt("새로운 title")
-        let items = boardItems
-
-        items = items.map((item) => {
-            if (item.id === id) {
-                item = { ...item, 'title': newTitle }
-            }
-            return item
-        })
         setBoardItems(items)
     }
     
@@ -43,23 +31,29 @@ function Board() {
     useEffect(() => {
         getBoardItems()
         .then(res => {
+            res.map((item) => {
+                item.id = window.crypto.randomUUID()
+            })
             setBoardItems(res)
         })
     }, [])
 
     return(
         <div>
+            <section className="searchBar">
+                <Search setItems={ setBoardItems } />
+            </section>
             <section className="board">
                 <div className="board-header">
                     <h1 onClick={()=> {
                     }}> 
-                        Seq | Title | Creator | etc
+                        ID | Title | Creator | etc
                     </h1>
                     <div>
                     </div>
                 </div>
                 <div>
-                    <BoardItem items={boardItems} onEdit={ editPost } onDelete={ deletePost }></BoardItem>
+                    <BoardItem items={boardItems} onDelete={ deletePost }></BoardItem>
                 </div>
             </section>
             <Create onClick={ createPost }/>
