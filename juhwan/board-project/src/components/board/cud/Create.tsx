@@ -1,12 +1,28 @@
-import {ModalMethodProps} from "./Modal";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import { BoardActionType, BoardDispatchContext } from "../../../context/BoardContext";
+import { ModalProps } from "../../../context/ModalContext";
 
-interface CreateProps extends ModalMethodProps {
+interface CreateProps extends ModalProps {
 }
 
-const Create = ({create, onClose}: CreateProps) => {
+const Create = ({onClose} : CreateProps) => {
+  // state
   const [title, setTitle] = useState<string>('');
   const [creator, setCreator] = useState<string>('');
+
+  // context
+  const boardDispatch = useContext(BoardDispatchContext);
+
+  const create = () => {
+    boardDispatch?.({
+      type: BoardActionType.CREATE_BOARD_ITEM,
+      boardItem: {
+        title: title,
+        creator: creator,
+        content: undefined,
+      }
+    })
+  }
 
   return (
       <>
@@ -22,12 +38,12 @@ const Create = ({create, onClose}: CreateProps) => {
             alert("creator 입력해주세요");
             return;
           }
-          create?.(title, creator);
-          onClose?.()
+          create();
+          onClose()
         }}>Create
         </div>
         <div onClick={() => {
-          onClose?.()
+          onClose()
         }}>Close
         </div>
       </>
