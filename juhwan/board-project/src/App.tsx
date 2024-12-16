@@ -1,6 +1,6 @@
 import './App.css';
 import Board from "./components/board/Board";
-import { BoardProvider } from './components/board/context/BoardContext';
+import { BoardProvider } from './context/BoardContext';
 
 function App() {
   return (

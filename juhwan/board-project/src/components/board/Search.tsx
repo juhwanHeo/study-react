@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BoardActionType, BoardDispatchContext } from "./context/BoardContext";
+import { BoardActionType, BoardDispatchContext } from "../../context/BoardContext";
 
 const Search = () => {
   const [filterText, setFilterText] = useState<string>("");

@@ -1,11 +1,11 @@
 import { createContext, Dispatch, useReducer } from 'react';
 
 export interface BoardItem {
-    id: number;
+    id?: number;
     seq?: number;
-    title: string;
+    title?: string;
     content?: string;
-    creator: string;
+    creator?: string;
 }
 
 export enum BoardActionType {
@@ -36,7 +36,8 @@ function reducer(state: Array<BoardItem>, action: BoardAction) {
             return [...action.boardItems];
         }
         case BoardActionType.CREATE_BOARD_ITEM: {
-            return [...state, action.boardItem];
+            const id = state.length + 1;
+            return [...state, {id: id, ...action.boardItem}];
         }
         case BoardActionType.UPDATE_BOARD_ITEM: {
             const updated = state.map((item) => {
