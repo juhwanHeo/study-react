@@ -13,7 +13,7 @@ function Update({ titleId, titleRef }) {
         const newTitle = prompt("새로운 title")
         
         const node = titleRef.current.get(titleId)
-        node.innerText = newTitle
+        if (newTitle) node.innerText = newTitle
     }    
 }
 

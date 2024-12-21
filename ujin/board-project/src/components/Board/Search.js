@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 
-
-
-
-
 export default function Search({ setItems }) {
     const [searchTitle, setSearchTitle] = useState('')  
 
@@ -27,9 +23,6 @@ export default function Search({ setItems }) {
             }
         }
     }
-
-
-
     return (
         <div>
             <input
