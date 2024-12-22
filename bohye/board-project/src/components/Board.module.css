@@ -1,44 +1,13 @@
-.main {
+.boardHeader {
+  margin: 20px 10px;
+}
+
+.createBtn {
+  width: 80px;
   margin: 10px;
-  border: 1px solid black;
-  border-radius: 10px;
+  padding: 10px 20px;
 }
 
-.cat {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #ddd;
-  font-weight: bold;
-}
-
-.cat > div {
-  flex: 1;
-  text-align: center;
-}
-
-.cat > div:nth-child(2),
-.cat > div:nth-child(3) {
-  flex: 2;
-}
-
-.title {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-}
-
-.noPosts {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #999;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
+.createBtn:hover {
+  background-color: #aaa;
 }
