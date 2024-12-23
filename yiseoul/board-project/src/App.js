@@ -1,14 +1,15 @@
 import './App.css';
-import React from "react";
-import Board, {useRemoteItems} from "./components/board";
+import React from 'react';
+import Board, {useRemoteItems} from './components/board';
+import {BoardProvider} from './components/contexts/BaordContext';
 
 function App() {
   const remoteItems = useRemoteItems();
 
   return (
-    <div className="App">
+    <BoardProvider>
       <Board boardItems={remoteItems} />
-    </div>
+    </BoardProvider>
   );
 }
 
