@@ -3,14 +3,22 @@ import  './Board.css'
 import Header from './Header'
 import { BoardItem, NoItem } from './BoardItem'
 import { ItemModal, AddBtn } from '../Form/ItemModal'
+import Search from './Search'
 
 function Board() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    loadItems().then((res) => setItems((res || [])
-      .map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item }))
-    ))
+    loadItems()
+      .then((res) => setItems((res || []).map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item }))))
   }, []);
+
+  const onSearchHandler = (v) => {
+    loadItems(v)
+      .then((res) => {
+        setItems([])
+        if (res) setItems(res.map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item })))
+      })
+  }
 
   const onAddItemHandler = (v) => {
     setItems([...items, v])
@@ -34,6 +42,7 @@ function Board() {
 
   return (
     <main>
+      <Search label='검색어를 입력해주세요' onSearch={ onSearchHandler }/>
       <Header />
       <ItemWrapper items={ items } onAddItem={ onAddItemHandler } onEditItem={ onEditItemHandler } onRemoveItem={ onRemoveItemHandler }/>
     </main>
@@ -101,8 +110,8 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
   );
 }
 
-const loadItems = async () => {
-  const res = await fetch('http://heojh.iptime.org:8003/board');
+const loadItems = async (title = '') => {
+  const res = await fetch(`http://heojh.iptime.org:8003/board?title=${title}`);
   return await res.json();
 }
 
