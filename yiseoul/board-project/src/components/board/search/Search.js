@@ -1,11 +1,11 @@
 import './search.css';
-import {useState} from "react";
+import {useState} from 'react';
 
 function Search({event, value}) {
   const [inqValue, setValue] = useState(value || '');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const {value} = e.target;
     setValue(value);
   };
 
