@@ -1,6 +1,6 @@
+import { useContext } from 'react';
 import './css/board-style.css';
-import {Mode} from "./Board";
-import {ModalProps} from "./cud/Modal";
+import { ModalActionType, ModalDispatchContext, Mode } from '../../context/ModalContext';
 
 export interface BoardItemProps {
   id: number;
@@ -8,10 +8,10 @@ export interface BoardItemProps {
   title: string;
   content?: string;
   creator: string;
-  setModal?(modal: ModalProps): void;
 }
 
-const BoardItem = ({ id, seq, title, creator, setModal }: BoardItemProps) => {
+const BoardItem = ({ id, seq, title, creator }: BoardItemProps) => {
+  const modalDispatch = useContext(ModalDispatchContext);
 
   return (
       <>
@@ -21,12 +21,28 @@ const BoardItem = ({ id, seq, title, creator, setModal }: BoardItemProps) => {
           <div>{creator}</div>
           <div
               onClick={() => {
-                setModal?.({mode: Mode.UPDATE, boardItem: {id, seq, title, creator}});
+                // dispatch update
+                modalDispatch?.({
+                  type: ModalActionType.OPEN_MODAL,
+                  modalItem: {
+                    open: true,
+                    mode: Mode.UPDATE,
+                    data: {id, seq, title, creator}
+                  }
+                })
               }}
-          >update</div>
+              >update</div>
           <div
               onClick={() => {
-                setModal?.({mode: Mode.DELETE, boardItem: {id, title}});
+                // dispatch delete
+                modalDispatch?.({
+                  type: ModalActionType.OPEN_MODAL,
+                  modalItem: {
+                    open: true,
+                    mode: Mode.DELETE,
+                    data: {id}
+                  }
+                })
               }}
           >delete</div>
         </div>
