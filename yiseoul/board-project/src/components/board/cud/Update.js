@@ -1,9 +1,10 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
+import {useBoardContext, ACTIONS} from '../../contexts/BaordContext';
 
-const Update = ({event, row}) => {
+const Update = ({row}) => {
+  const dispatch = useBoardContext();
   const [toggle, setToggle] = useState(false);
   const [item, setItem] = useState({title: row.title || ''});
-  // const inputRef = useRef(null);
 
   useEffect(() => {
     if (!toggle) {
@@ -12,8 +13,6 @@ const Update = ({event, row}) => {
   }, [toggle, row]);
 
   const handleChange = (e) => {
-    // setToggle((prev) => !prev);
-    // event(row.key, { title: inputRef.current.value });
     const { name, value } = e.target;
     setItem((prevItem) => ({
       ...prevItem,
@@ -39,7 +38,7 @@ const Update = ({event, row}) => {
             </div>
             <div className="board-item row">
               <button onClick={() => {
-                  event(row.key, item);  // 이벤트 함수 실행 (전달된 데이터를 처리)
+                  dispatch({type: ACTIONS.CHANGED, key: row.key, changes: item});
                   setToggle((prev) => !prev); // toggle 상태 전환
                 }}
               >확인</button>
