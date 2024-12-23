@@ -1,6 +1,8 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
+import {useBoardContext, ACTIONS} from '../../contexts/BaordContext';
 
-const Create = ({event}) => {
+const Create = () => {
+  const dispatch = useBoardContext();
   const [toggle, setToggle] = useState(false);
   const [item, setItem] = useState({title: '', creator: ''});
 
@@ -14,7 +16,7 @@ const Create = ({event}) => {
     const { name, value } = e.target;
     setItem((prevItem) => ({
       ...prevItem,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -46,7 +48,7 @@ const Create = ({event}) => {
               </div>
               <div className="board-item row">
                 <button onClick={() => {
-                  event(item);  // 이벤트 함수 실행 (전달된 데이터를 처리)
+                  dispatch({type: ACTIONS.ADDED, newItem: {key: crypto.randomUUID(), ...item}});
                   setToggle((prev) => !prev); // toggle 상태 전환
                 }}>확인</button>
               </div>

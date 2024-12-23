@@ -1,45 +1,43 @@
 import { useState, useEffect } from 'react'
+import {useBoard, useBoardContext, ACTIONS} from '../contexts/BaordContext'
 import BoardHeader from './BoardHeader';
 import BoardItem from './BoardItem';
-import Create from "./cud/Create";
+import Create from './cud/Create';
+import Search from './search';
 
-function Board({boardItems, useCreate, useDelete, useEdit}) {
-  const [items, setItems] = useState([]);
+function Board({boardItems}) {
+  const items = useBoard();
+  const dispatch  = useBoardContext();
+  const [filterItems, setFilterItems] = useState([]);
+  const [inqValue, setInqValue] = useState('');
 
   useEffect(() => {
     const validItems = Array.isArray(boardItems) ? boardItems : [];
-    setItems(validItems.map((item) => ({key: crypto.randomUUID(), ...item})));
+    const mapItems = validItems.map((item) => ({
+      key: crypto.randomUUID(),
+      ...item
+    }))
+
+    dispatch({ type: ACTIONS.INIT, newItems: mapItems });
+    setFilterItems([...mapItems]);
   }, [boardItems]);
 
-  const handleEdit = (key, { title }) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.key === key ? { ...item, title: title } : item
-      )
-    );
-  };
+  useEffect(() => {
+    const filtered = items.filter(({ title }) => !inqValue || title.includes(inqValue));
+    setFilterItems(filtered);
+  }, [items, inqValue]);
 
-  const handleDelete = (key) => {
-    setItems(items.filter(item => item.key !== key));
-  };
-
-  const handleCreate = (newItem) => {
-    const newSeq = items.length ? items[items.length - 1].seq + 1 : 1;
-    newItem = {
-      key: crypto.randomUUID(),
-      seq: newSeq,
-      title: newItem.title || '',
-      creator: newItem.creator || '',
-    };
-    setItems([...items, newItem]);
-  };
+  const handleSearch = (value) => setInqValue(value);
 
   return (
+    <div className="board-container">
+      <Search event={handleSearch} value={inqValue} />
       <div className="board">
-        <BoardHeader/>
-        <BoardItem items={items} onDelete={handleDelete} onUpdate={handleEdit} />
-        <Create event={handleCreate}></Create>
+        <BoardHeader />
+        <BoardItem items={filterItems} />
+        <Create />
       </div>
+    </div>
   );
 }
 

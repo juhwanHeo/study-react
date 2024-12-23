@@ -1,17 +1,15 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
-import Board, {useRemoteItems } from "./components/board";
-import Accordion from "./components/up-state/Accodion";
+import React from 'react';
+import Board, {useRemoteItems} from './components/board';
+import {BoardProvider} from './components/contexts/BaordContext';
 
 function App() {
   const remoteItems = useRemoteItems();
 
   return (
-    <div className="App">
-      <Accordion />
-      <hr/>
+    <BoardProvider>
       <Board boardItems={remoteItems} />
-    </div>
+    </BoardProvider>
   );
 }
 
