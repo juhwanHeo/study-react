@@ -1,6 +1,6 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
-import Board, {useRemoteItems } from "./components/board";
+import React from "react";
+import Board, {useRemoteItems} from "./components/board";
 
 function App() {
   const remoteItems = useRemoteItems();
