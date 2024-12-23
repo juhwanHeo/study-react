@@ -19,7 +19,7 @@ function Board({boardItems, useCreate, useDelete, useEdit}) {
 
   useEffect(() => {
     setFilterItems(() => { return items.filter(({title}) => !inqValue || title.includes(inqValue)); });
-  }, [items,inqValue]);
+  }, [items, inqValue]);
 
   const handleEdit = (key, { title }) => {
     setItems((prevItems) =>
