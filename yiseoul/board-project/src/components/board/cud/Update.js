@@ -9,7 +9,7 @@ const Update = ({event, row}) => {
     if (!toggle) {
       setItem({title: row.title || ''});
     }
-  }, [toggle]);
+  }, [toggle, row]);
 
   const handleChange = (e) => {
     // setToggle((prev) => !prev);
