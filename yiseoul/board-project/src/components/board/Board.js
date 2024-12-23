@@ -1,24 +1,30 @@
 import { useState, useEffect } from 'react'
+import {useBoard, useBoardContext, ACTIONS} from '../contexts/BaordContext'
 import BoardHeader from './BoardHeader';
 import BoardItem from './BoardItem';
-import Create from "./cud/Create";
-import Search from "./search";
+import Create from './cud/Create';
+import Search from './search';
 
 function Board({boardItems}) {
-  const [items, setItems] = useState([]);
+  const items = useBoard();
+  const dispatch  = useBoardContext();
   const [filterItems, setFilterItems] = useState([]);
   const [inqValue, setInqValue] = useState('');
 
   useEffect(() => {
     const validItems = Array.isArray(boardItems) ? boardItems : [];
-    const mapItems = validItems.map((item) => ({key: crypto.randomUUID(), ...item}))
+    const mapItems = validItems.map((item) => ({
+      key: crypto.randomUUID(),
+      ...item
+    }))
 
-    setItems(mapItems);
+    dispatch({ type: ACTIONS.INIT, newItems: mapItems });
     setFilterItems([...mapItems]);
   }, [boardItems]);
 
   useEffect(() => {
-    setFilterItems(() => { return items.filter(({title}) => !inqValue || title.includes(inqValue)); });
+    const filtered = items.filter(({ title }) => !inqValue || title.includes(inqValue));
+    setFilterItems(filtered);
   }, [items, inqValue]);
 
   const handleSearch = (value) => setInqValue(value);
