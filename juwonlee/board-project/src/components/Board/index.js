@@ -1,58 +1,71 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer, useContext } from 'react'
+import { ItemContext, ItemDispatchContext } from './ItemContext'
 import  './Board.css'
 import Header from './Header'
 import { BoardItem, NoItem } from './BoardItem'
 import { ItemModal, AddBtn } from '../Form/ItemModal'
 import Search from './Search'
 
+function itemsReducer(items, action) {
+  const { type, payload, key } = action
+  switch (type) {
+    case 'set': {
+      return [...payload]
+    }
+    case 'add': {
+      return [...items, payload]
+    }
+    case 'edit': {
+      return items.map((item, index) => {
+        if (item.key === key) return payload
+        else return item
+      })
+    }
+    case 'remove': {
+      return items.filter(item => item.key !== key)
+    }
+    default: {
+      throw Error(`Unknown action type "${type}"`)
+    }
+  }
+}
+
 function Board() {
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
+  const [items, itemDispatch] = useReducer(itemsReducer, [])
+
   useEffect(() => {
     loadItems()
-      .then((res) => setItems((res || []).map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item }))))
+      .then((res) => itemDispatch({ type: 'set', payload: (res || []).map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item })) }))
   }, []);
 
   const onSearchHandler = (v) => {
     loadItems(v)
       .then((res) => {
-        setItems([])
-        if (res) setItems(res.map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item })))
+        itemDispatch({ type: 'set', payload: [] })
+        if (res) itemDispatch({ type: 'set', payload: res.map((item, index) => ({ key: crypto.randomUUID(), seq: index+1, ...item })) })
       })
-  }
-
-  const onAddItemHandler = (v) => {
-    setItems([...items, v])
-  }
-
-  const onEditItemHandler = (v) => {
-    const targetIndex = items.findIndex(item => item.key === v.key)
-    const tempArr = [...items]
-    if (targetIndex > -1) tempArr[targetIndex] = { ...v }
-    setItems(tempArr)
-    alert('수정되었습니다.')
-  }
-
-  const onRemoveItemHandler = (key) => {
-    const targetIndex = items.findIndex(item => item.key === key)
-    const tempArr = [...items]
-    if (targetIndex > -1) tempArr.splice(targetIndex, 1)
-    setItems(tempArr)
-    alert('삭제되었습니다.')
   }
 
   return (
     <main>
-      <Search label='검색어를 입력해주세요' onSearch={ onSearchHandler }/>
-      <Header />
-      <ItemWrapper items={ items } onAddItem={ onAddItemHandler } onEditItem={ onEditItemHandler } onRemoveItem={ onRemoveItemHandler }/>
+      <ItemContext.Provider value={ items }>
+        <ItemDispatchContext.Provider value={ itemDispatch }>
+          <Search label='검색어를 입력해주세요' onSearch={ onSearchHandler }/>
+          <Header />
+          <ItemWrapper />
+        </ItemDispatchContext.Provider>
+      </ItemContext.Provider>
     </main>
   );
 }
 
-function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
+function ItemWrapper() {
   const [isAddShow, setIsAddShow] = useState(false)
   const [isEditShow, setIsEditShow] = useState(false)
   const [selectedKey, setSelectedKey] = useState(-1)
+  const items = useContext(ItemContext)
+  const dispatch = useContext(ItemDispatchContext)
 
   const selectedItemHandler = () => {
     let item = null
@@ -78,6 +91,20 @@ function ItemWrapper({ items, onAddItem, onEditItem, onRemoveItem }) {
     setIsAddShow(flag)
     setIsEditShow(flag)
     setSelectedKey(-1)
+  }
+
+  const onAddItem = (v) => {
+    dispatch({ type: 'add', payload: v })
+  }
+
+  const onEditItem = (v) => {
+    dispatch({ type: 'edit', key: v.key, payload: v })
+    alert('수정되었습니다.')
+  }
+
+  const onRemoveItem = (key) => {
+    dispatch({ type: 'remove', key })
+    alert('삭제되었습니다.')
   }
 
   return (
