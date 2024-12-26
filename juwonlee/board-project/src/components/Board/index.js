@@ -16,7 +16,7 @@ function itemsReducer(items, action) {
       return [...items, payload]
     }
     case 'edit': {
-      return items.map((item, index) => {
+      return items.map((item) => {
         if (item.key === key) return payload
         else return item
       })
