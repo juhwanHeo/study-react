@@ -31,7 +31,7 @@ function CreateUpdate({ mode, item, onSubmit, onClose }) {
     e.preventDefault();
     if (mode === "create") {
       onSubmit({
-        key: crypto.randomUUID(),
+        id: crypto.randomUUID(),
         ...formData,
       });
     } else if (mode === "update") {

@@ -12,7 +12,7 @@ function BoardTable({ items, updateItem, deleteItem }) {
       {items.length > 0 ? (
         items.map((item, index) => (
           <BoardItem
-            key={item.key}
+            key={item.id}
             item={item}
             index={index + 1}
             updateItem={updateItem}

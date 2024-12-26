@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import BoardTable from "./BoardTable";
 import CreateUpdate from "./cud/CreateUpdate";
 import Search from "./Search";
@@ -11,16 +12,12 @@ function Board() {
 
   const fetchItems = async (query = "") => {
     try {
-      const url = query
-        ? `http://heojh.iptime.org:8003/board?title=${query}`
-        : "http://heojh.iptime.org:8003/board";
-      const response = await fetch(url);
-      const data = await response.json();
-      const dataWithKeys = data.map((item) => ({
-        ...item,
-        key: crypto.randomUUID(),
-      }));
-      setItems(dataWithKeys);
+      const response = await axios.get("http://heojh.iptime.org:8003/board", {
+        params: { title: query },
+      });
+      const data = response.data;
+      console.log("API Response:", data);
+      setItems(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -38,14 +35,14 @@ function Board() {
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
-  const updateItem = (key, updatedItem) => {
+  const updateItem = (id, updatedItem) => {
     setItems((prevItems) =>
-      prevItems.map((item) => (item.key === key ? updatedItem : item))
+      prevItems.map((item) => (item.id === id ? updatedItem : item))
     );
   };
 
-  const deleteItem = (key) => {
-    setItems((prevItems) => prevItems.filter((item) => item.key !== key));
+  const deleteItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const toggleCreateMode = () => {

@@ -16,12 +16,12 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
   };
 
   const handleSave = (updatedItem) => {
-    updateItem(updatedItem.key, updatedItem);
+    updateItem(updatedItem.id, updatedItem);
     toggleEditing(false);
   };
 
   const handleDelete = () => {
-    deleteItem(item.key);
+    deleteItem(item.id);
   };
 
   return (
