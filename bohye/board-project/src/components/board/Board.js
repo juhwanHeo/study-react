@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BoardTable from "./BoardTable";
 import CreateUpdate from "./cud/CreateUpdate";
-import Search from "./Search";
-import Button from "./common/Button";
+import Search from "../common/search/Search";
+import Button from "../common/button/Button";
 import classes from "./Board.module.css";
 
 function Board() {
@@ -51,7 +51,13 @@ function Board() {
 
   return (
     <div className={classes.boardContainer}>
-      <Search onSearch={handleSearch} />
+      <Search
+        placeholder="Enter title..."
+        label="Search Board"
+        buttonLabel="Find"
+        onSearch={handleSearch}
+        errorMessage="Please check your search term and try again."
+      />
       <h2 className={classes.boardHeader}>Board</h2>
       <BoardTable
         items={items}

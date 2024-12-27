@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import classes from "./CreateUpdate.module.css";
-import Button from "../common/Button";
+import Button from "../../common/button/Button";
 
 function CreateUpdate({ mode, item, onSubmit, onClose }) {
   const [formData, setFormData] = useState({

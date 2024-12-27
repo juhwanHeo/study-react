@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CreateUpdate from "./cud/CreateUpdate";
 import Delete from "./cud/Delete";
-import Button from "./common/Button";
+import Button from "../common/button/Button";
 import classes from "./BoardItem.module.css";
 
 function BoardItem({ item, index, updateItem, deleteItem }) {
