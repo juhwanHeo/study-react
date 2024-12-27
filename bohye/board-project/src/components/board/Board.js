@@ -16,7 +16,6 @@ function Board() {
         params: { title: query },
       });
       const data = response.data;
-      console.log("API Response:", data);
       setItems(data);
     } catch (error) {
       console.error("Error fetching data:", error);

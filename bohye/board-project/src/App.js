@@ -1,12 +1,15 @@
 import React from "react";
+import { BoardProvider } from "./contexts/BoardContext";
 import Board from "./components/board/Board";
 import "./App.css";
 
 function App() {
   return (
-    <div className="top">
-      <Board />
-    </div>
+    <BoardProvider>
+      <div className="top">
+        <Board />
+      </div>
+    </BoardProvider>
   );
 }
 
