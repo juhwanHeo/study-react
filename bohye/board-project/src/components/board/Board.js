@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import BoardTable from "./BoardTable";
+import { useBoardState, useBoardDispatch } from "../../contexts/BoardContext";
 import CreateUpdate from "./cud/CreateUpdate";
 import Search from "../common/search/Search";
 import Button from "../common/button/Button";
 import classes from "./Board.module.css";
+import BoardHeader from "./BoardHeader";
+import BoardItem from "./BoardItem";
 
 function Board() {
-  const [items, setItems] = useState([]);
-  const [isCreating, setIsCreating] = useState(false);
+  const state = useBoardState();
+  const dispatch = useBoardDispatch();
 
   const fetchItems = async (query = "") => {
     try {
@@ -16,7 +18,7 @@ function Board() {
         params: { title: query },
       });
       const data = response.data;
-      setItems(data);
+      dispatch({ type: "SET_ITEMS", payload: data });
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -30,22 +32,8 @@ function Board() {
     fetchItems(query);
   };
 
-  const addItem = (newItem) => {
-    setItems((prevItems) => [...prevItems, newItem]);
-  };
-
-  const updateItem = (id, updatedItem) => {
-    setItems((prevItems) =>
-      prevItems.map((item) => (item.id === id ? updatedItem : item))
-    );
-  };
-
-  const deleteItem = (id) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
-
   const toggleCreateMode = () => {
-    setIsCreating((prevState) => !prevState);
+    dispatch({ type: "TOGGLE_CREATE_MODE" });
   };
 
   return (
@@ -58,20 +46,21 @@ function Board() {
         errorMessage="Please check your search term and try again."
       />
       <h2 className={classes.boardHeader}>Board</h2>
-      <BoardTable
-        items={items}
-        updateItem={updateItem}
-        deleteItem={deleteItem}
-      />
+      <div className={classes.boardTable}>
+        <BoardHeader />
+        {state.items.length > 0 ? (
+          state.items.map((item, index) => (
+            <BoardItem key={item.id} item={item} index={index + 1} />
+          ))
+        ) : (
+          <div className={classes.noPosts}>No contents..</div>
+        )}
+      </div>
       <Button className={classes.createBtn} onClick={toggleCreateMode}>
         Create
       </Button>
-      {isCreating && (
-        <CreateUpdate
-          mode="create"
-          onSubmit={addItem}
-          onClose={toggleCreateMode}
-        />
+      {state.isCreating && (
+        <CreateUpdate mode="create" onClose={toggleCreateMode} />
       )}
     </div>
   );
