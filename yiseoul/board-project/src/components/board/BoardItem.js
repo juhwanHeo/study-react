@@ -10,20 +10,20 @@ function NoItem() {
   );
 }
 
-function BoardItem({items, onUpdate, onDelete}) {
+function BoardItem({items}) {
   return (
       <>
         {items.length === 0 ? (
             <NoItem/>
         ) : (
-            items.map((item, index) => (
+            items.map((item) => (
                 <div className="board-row" key={item.key}>
                   <div className="board-item">{item.seq}</div>
                   <div className="board-item">{item.title}</div>
                   <div className="board-item">{item.creator}</div>
                   <div className="board-item row">
-                    <Delete event={() => onDelete(item.key)} />
-                    <Update event={onUpdate} row={item} />
+                    <Delete row={item} />
+                    <Update row={item} />
                   </div>
                 </div>
             ))

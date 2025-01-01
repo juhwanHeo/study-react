@@ -1,9 +1,21 @@
 /* board.css */
-.board {
-  width: 100%;
+.board-container {
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.board {
+  display: flex;
+  width: 80%;
+  justify-content: center;
   flex-direction: column;
   border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .board-header, .board-row {
@@ -21,7 +33,10 @@
 .board-header-item, .board-item {
   flex: 1;
   text-align: center;
-  padding: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .board-item {
@@ -32,6 +47,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
+  align-items: center;
 }
 
 .board-item:first-child {
@@ -44,5 +60,6 @@
   align-items: center;
   height: 100%;
   min-height: 50px;
+  border-bottom: none;
 }
 
