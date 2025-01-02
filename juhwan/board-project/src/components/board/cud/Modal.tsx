@@ -1,31 +1,22 @@
-import {Mode} from "../Board";
 import Update from "./Update";
 import Delete from "./Delete";
 import Create from "./Create";
+import { ModalActionType, ModalContext, ModalDispatchContext, Mode } from "../../../context/ModalContext";
+import { useContext } from "react";
 
-export interface ModalMethodProps {
-  create?(title: string, creator: string): void;
-  update?(id: number, title: string): void;
-  remove?(id: number): void;
-  onClose?(): void;
-}
+const Modal = () => {
+  // context
+  const {mode, open, data: boardItem} = useContext(ModalContext) || {};
+  const modalDispatch = useContext(ModalDispatchContext);
 
-export interface ModalProps extends ModalMethodProps {
-  mode: Mode;
-  boardItem?: {
-    id: number;
-    seq?: number;
-    title?: string;
-    creator?: string;
-  };
-}
+  const onClose = () => {
+    modalDispatch?.({ type: ModalActionType.CLOSE_MODAL });
+  }
 
-const Modal = ({mode, boardItem, create, update, remove, onClose}: ModalProps) => {
-
-  const ModalContent = () => {
+  const modalContent = () => {
     switch (mode) {
       case Mode.CREATE:
-        return <Create create={create} onClose={onClose} />;
+        return <Create onClose={onClose} />;
       case Mode.UPDATE:
         return (
           <Update
@@ -33,7 +24,6 @@ const Modal = ({mode, boardItem, create, update, remove, onClose}: ModalProps) =
               seq={boardItem?.seq}
               title={boardItem?.title}
               creator={boardItem?.creator}
-              update={update}
               onClose={onClose}
           />
         );
@@ -42,7 +32,6 @@ const Modal = ({mode, boardItem, create, update, remove, onClose}: ModalProps) =
             <Delete
                 id={boardItem?.id || -999}
                 title={boardItem?.title}
-                remove={remove}
                 onClose={onClose}
             />
         );
@@ -51,10 +40,13 @@ const Modal = ({mode, boardItem, create, update, remove, onClose}: ModalProps) =
     }
   }
 
+  if (!open) return null;
   return (
       <div id="modal-background" className="hidden">
         <div id="modal">
-          <ModalContent />
+          {
+            modalContent()
+          }
         </div>
       </div>
   );
