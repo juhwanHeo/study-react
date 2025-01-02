@@ -18,8 +18,8 @@ function Board() {
                 item.id = window.crypto.randomUUID()
             })
             dispatch({
-                    type: 'INIT',
-                    initData: res
+                type: 'INIT',
+                initData: res
             });
         })
     }, [])
