@@ -4,7 +4,11 @@ import Board, {useRemoteItems} from './components/board';
 import {BoardProvider} from './components/contexts/BaordContext';
 
 function App() {
-  const remoteItems = useRemoteItems();
+  const {remoteItems, loading} = useRemoteItems();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <BoardProvider>

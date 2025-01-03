@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 
 const useRemoteItems  = () => {
   const [remoteItems, setRemoteItems] = useState([]);
+  const [loading, setLading] = useState(false);
 
   useEffect(() => {
     const fetchRemoteItems = async () => {
@@ -13,13 +14,15 @@ const useRemoteItems  = () => {
       } catch (e) {
         console.error('fetch error:', e);
         setRemoteItems([]);
+      } finally {
+        setLading(false);
       }
     };
 
     fetchRemoteItems();
   }, []);
 
-  return remoteItems;
+  return {remoteItems, loading};
 }
 
 export default Board;
