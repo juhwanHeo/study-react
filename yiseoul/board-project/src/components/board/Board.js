@@ -7,14 +7,9 @@ import Search from './search';
 
 function Board() {
   const items = useBoard();
-  const [filterItems, setFilterItems] = useState([]);
   const [inqValue, setInqValue] = useState('');
 
-  useEffect(() => {
-    const filtered = items.filter(({ title }) => !inqValue || title.includes(inqValue));
-    setFilterItems(filtered);
-  }, [items, inqValue]);
-
+  const filterItems = items.filter(({ title }) => !inqValue || title.includes(inqValue));
   const handleSearch = (value) => setInqValue(value);
 
   return (
