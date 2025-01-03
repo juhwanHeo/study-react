@@ -11,8 +11,8 @@ function App() {
   }
 
   return (
-    <BoardProvider>
-      <Board boardItems={remoteItems} />
+    <BoardProvider initialItems={remoteItems}>
+      <Board />
     </BoardProvider>
   );
 }
