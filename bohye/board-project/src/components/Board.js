@@ -1,27 +1,72 @@
-import React from "react";
-import BoardItem from "./BoardItem";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import BoardTable from "./BoardTable";
+import CreateUpdate from "./cud/CreateUpdate";
+import Search from "./Search";
+import Button from "./common/Button";
 import classes from "./Board.module.css";
 
-function Board({ items, updateItem, deleteItem }) {
+function Board() {
+  const [items, setItems] = useState([]);
+  const [isCreating, setIsCreating] = useState(false);
+
+  const fetchItems = async (query = "") => {
+    try {
+      const response = await axios.get("http://heojh.iptime.org:8003/board", {
+        params: { title: query },
+      });
+      const data = response.data;
+      console.log("API Response:", data);
+      setItems(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const handleSearch = (query) => {
+    fetchItems(query);
+  };
+
+  const addItem = (newItem) => {
+    setItems((prevItems) => [...prevItems, newItem]);
+  };
+
+  const updateItem = (id, updatedItem) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === id ? updatedItem : item))
+    );
+  };
+
+  const deleteItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
+  const toggleCreateMode = () => {
+    setIsCreating((prevState) => !prevState);
+  };
+
   return (
-    <div className={classes.main}>
-      <header className={classes.cat}>
-        <div>Seq</div>
-        <div className={classes.title}>Title</div>
-        <div>Creator</div>
-      </header>
-      {items.length > 0 ? (
-        items.map((item, index) => (
-          <BoardItem
-            key={item.key}
-            item={item}
-            index={index + 1}
-            updateItem={updateItem}
-            deleteItem={deleteItem}
-          />
-        ))
-      ) : (
-        <div className={classes.noPosts}>No contents..</div>
+    <div className={classes.boardContainer}>
+      <Search onSearch={handleSearch} />
+      <h2 className={classes.boardHeader}>Board</h2>
+      <BoardTable
+        items={items}
+        updateItem={updateItem}
+        deleteItem={deleteItem}
+      />
+      <Button className={classes.createBtn} onClick={toggleCreateMode}>
+        Create
+      </Button>
+      {isCreating && (
+        <CreateUpdate
+          mode="create"
+          onSubmit={addItem}
+          onClose={toggleCreateMode}
+        />
       )}
     </div>
   );
