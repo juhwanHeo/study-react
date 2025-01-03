@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import classes from "./CreateUpdate.module.css";
-import Button from "../common/Button";
+import Button from "../../common/button/Button";
+import { useBoardDispatch } from "../../../contexts/BoardContext";
 
-function CreateUpdate({ mode, item, onSubmit, onClose }) {
+function CreateUpdate({ mode, item, onClose }) {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
     creator: "",
   });
+
+  const dispatch = useBoardDispatch();
 
   useEffect(() => {
     if (mode === "update" && item) {
@@ -30,15 +33,10 @@ function CreateUpdate({ mode, item, onSubmit, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "create") {
-      onSubmit({
-        id: crypto.randomUUID(),
-        ...formData,
-      });
+      const newItem = { id: crypto.randomUUID(), ...formData };
+      dispatch({ type: "ADD_ITEM", payload: newItem });
     } else if (mode === "update") {
-      onSubmit({
-        ...item,
-        ...formData,
-      });
+      dispatch({ type: "UPDATE_ITEM", payload: { id: item.id, ...formData } });
     }
     setFormData({ title: "", content: "", creator: "" });
     onClose();
