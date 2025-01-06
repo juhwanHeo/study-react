@@ -5,8 +5,6 @@ import Create from '../cud/Create';
 import BoardItems from './BoardItems';
 import { useBoardDispatch, useBoardItems } from './Context/BoardContext';
 
-
-
 function Board() {
     const boardList = useBoardItems();
     const dispatch = useBoardDispatch();
