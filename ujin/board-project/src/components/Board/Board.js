@@ -25,7 +25,7 @@ function Board() {
     return(
         <div>
             <section className="searchBar">
-                <Search setItems={ boardList } />
+                <Search/>
             </section>
             <section className="board">
                 <div className="board-header">
