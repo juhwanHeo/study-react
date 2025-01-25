@@ -31,8 +31,8 @@ const Board = () => {
 
   return (
     <>
-      <Search />
       <div className={"board-wrapper"}>
+        <Search />
         <BoardHeader />
         {boardItems?.length === 0 ? (
           <NoContent />
