@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef} from "react";
+import {useContext, useRef} from "react";
 import { BoardActionType, BoardDispatchContext } from "../../../context/BoardContext";
 import { ModalProps } from "../../../context/ModalContext";
 
@@ -15,11 +15,6 @@ const Update = ({id, seq, title, creator, onClose}: UpdateProps) => {
   // context
   const boardDispatch = useContext(BoardDispatchContext);
 
-  useEffect(() => {
-    if (!editTitle.current) return;
-    editTitle.current.value = title || "";
-  }, []);
-
   const update = () => {
     const value = editTitle?.current?.value;
     boardDispatch?.({ type: BoardActionType.UPDATE_BOARD_ITEM, id: id, boardItem: { id, seq, creator, title: value }});
@@ -28,7 +23,7 @@ const Update = ({id, seq, title, creator, onClose}: UpdateProps) => {
   return (
       <>
         <div>seq: {seq}</div>
-        <div>title: <input id={"edit-board-title"} ref={editTitle}/></div>
+        <div>title: <input id={"edit-board-title"} ref={editTitle} defaultValue={title}/></div>
         <div>creator: {creator}</div>
 
         <div onClick={() => {
