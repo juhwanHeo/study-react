@@ -1,18 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { BoardActionType, BoardDispatchContext } from "../../context/BoardContext";
 
 const Search = () => {
   const [filterText, setFilterText] = useState<string>("");
   const boardDispatch = useContext(BoardDispatchContext);
 
-  useEffect(() => {
-    search();
-  }, []);
-
   const search = async (title: string = "") => {
-    apiBoardItems(title).then(res => {
-      boardDispatch?.({type: BoardActionType.SEARCH_BOARD_ITEM, boardItems: res || [] })
-    });
+    boardDispatch?.({type: BoardActionType.SET_QUERY, query: title})
   }
 
   const onChange = (e:  React.ChangeEvent<HTMLInputElement>) => {
@@ -22,11 +16,6 @@ const Search = () => {
 
   const onClick = () => {
     search(filterText);
-  }
-
-  const apiBoardItems = async (title: string) => {
-    const res = await fetch(`http://heojh.iptime.org:8003/board?title=${title}`);
-    return await res.json();
   }
 
   return (
