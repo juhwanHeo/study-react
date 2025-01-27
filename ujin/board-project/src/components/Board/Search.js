@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useBoardDispatch } from "./Context/BoardContext";
 
 export default function Search() {
