@@ -1,4 +1,4 @@
-import Button from "./../common/Button";
+import Button from "../../common/button/Button";
 
 function Delete({ onDelete, className }) {
   const handleDeleteClick = () => {

@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { useBoardDispatch } from "../../contexts/BoardContext";
 import CreateUpdate from "./cud/CreateUpdate";
 import Delete from "./cud/Delete";
-import Button from "./common/Button";
+import Button from "../common/button/Button";
 import classes from "./BoardItem.module.css";
 
-function BoardItem({ item, index, updateItem, deleteItem }) {
+function BoardItem({ item, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useBoardDispatch();
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
@@ -16,12 +18,12 @@ function BoardItem({ item, index, updateItem, deleteItem }) {
   };
 
   const handleSave = (updatedItem) => {
-    updateItem(updatedItem.id, updatedItem);
-    toggleEditing(false);
+    dispatch({ type: "UPDATE_ITEM", payload: { id: item.id, ...updatedItem } });
+    setIsEditing(false);
   };
 
   const handleDelete = () => {
-    deleteItem(item.id);
+    dispatch({ type: "DELETE_ITEM", payload: item.id });
   };
 
   return (

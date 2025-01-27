@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import Button from "./common/Button";
+import Button from "../button/Button";
 import classes from "./Search.module.css";
 
-const Search = ({ onSearch }) => {
+const Search = ({
+  placeholder,
+  label,
+  buttonLabel,
+  onSearch,
+  errorMessage,
+}) => {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
 
@@ -13,28 +19,27 @@ const Search = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const trimmedQuery = query.trim();
-    if (trimmedQuery === "") {
-      setError("Please check your search term and try again.");
+    if (query === "") {
+      setError(errorMessage);
       return;
     }
-    onSearch(trimmedQuery);
+    onSearch(query);
   };
 
   return (
     <form className={classes.searchContainer} onSubmit={handleSubmit}>
-      <h2>Title Search</h2>
+      {label && <h2>{label}</h2>}
       <div className={classes.searchInputGroup}>
         <div className={classes.searchInputBox}>
           <input
             type="text"
             value={query}
             onChange={handleInputChange}
-            placeholder="Enter title..."
+            placeholder={placeholder}
             className={classes.searchInput}
           />
           <Button type="submit" className={classes.searchBtn}>
-            Search
+            {buttonLabel}
           </Button>
         </div>
         {error && <p className={classes.searchErrorMsg}>{error}</p>}
