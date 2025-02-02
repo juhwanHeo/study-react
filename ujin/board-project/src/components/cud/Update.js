@@ -1,4 +1,4 @@
-import "../Board.css";
+import "../Board/Board.css";
 
 function Update({ titleId, titleRef }) {
     return (
