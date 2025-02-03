@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Board from './components/Board';
-import Page from './components/week8/task1/Task1';
+import Task1 from './components/week8/task1/Task1';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Board />
-    <Page />
+    <Task1 />
   </React.StrictMode>
 );
 

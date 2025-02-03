@@ -1,6 +1,6 @@
 import { useSelectOption } from './useSelectOption.js';
 
-export default function Page() {
+export default function Task1() {
   const [
     planetList,
     planetId,
