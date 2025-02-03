@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
 export function useSelectOption(url) {
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState([]);
   const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
