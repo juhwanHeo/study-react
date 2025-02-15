@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from "./api";
 
-export default function Page() {
+export default function Task1() {
   const [planetList, setPlanetList] = useState([])
   const [planetId, setPlanetId] = useState('');
 
