@@ -22,6 +22,21 @@ export default function Task1() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!planetId) return;
+
+    let ignore = false;
+    fetchData('/planets/' + planetId + '/places').then(result => {
+      if (!ignore) {
+        setPlaceList(result);
+        setPlaceId(result[0].id);
+      }
+    });
+    return () => {
+      ignore = true;
+    }
+  }, [planetId]);
+
   return (
     <>
       <label>
