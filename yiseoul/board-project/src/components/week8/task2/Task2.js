@@ -1,29 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function App() {
-  const [roomId, setRoomId] = useState('general');
-  const [isEncrypted, setIsEncrypted] = useState(false);
+export default function Timer() {
+  const [ count, setCount ] = useState(0);
+  const [ increment, setIncrement ] = useState(1);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(c => c + increment);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
       <>
-        <label>
-          Choose the chat room:{' '}
-          <select
-              value={roomId}
-              onChange={e => setRoomId(e.target.value)}
-          >
-            <option value="general">general</option>
-            <option value="travel">travel</option>
-            <option value="music">music</option>
-          </select>
-        </label>
-        <label>
-          <input
-              type="checkbox"
-              checked={isEncrypted}
-              onChange={e => setIsEncrypted(e.target.checked)}
-          />
-          Enable encryption
-        </label>
+        <h1>
+          카운터: { count }
+          <button onClick={ () => setCount(0) }>재설정</button>
+        </h1>
+        <hr />
+        <p>
+          초당 증가량:
+          <button disabled={increment === 0} onClick={() => {
+            setIncrement(i => i - 1);
+          }}>–</button>
+          <b>{ increment }</b>
+          <button onClick={ () => {
+            setIncrement(i => i + 1);
+          }}>+</button>
+        </p>
       </>
   );
 }
