@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 const useRemoteItems  = () => {
   const [remoteItems, setRemoteItems] = useState([]);
-  const [loading, setLading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRemoteItems = async () => {
@@ -15,7 +15,7 @@ const useRemoteItems  = () => {
         console.error('fetch error:', e);
         setRemoteItems([]);
       } finally {
-        setLading(false);
+        setLoading(false);
       }
     };
 
