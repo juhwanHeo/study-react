@@ -4,23 +4,23 @@ import Button from "../../common/button/Button";
 import { useBoardDispatch } from "../../../contexts/BoardContext";
 
 function CreateUpdate({ mode, item, onClose }) {
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    creator: "",
-  });
+  const [formData, setFormData] = useState(() =>
+    mode === "update" && item
+      ? { title: item.title, content: item.content, creator: item.creator }
+      : { title: "", content: "", creator: "" }
+  );
 
   const dispatch = useBoardDispatch();
 
-  useEffect(() => {
-    if (mode === "update" && item) {
-      setFormData({
-        title: item.title || "",
-        content: item.content || "",
-        creator: item.creator || "",
-      });
-    }
-  }, [mode, item]);
+  // useEffect(() => {
+  //   if (mode === "update" && item) {
+  //     setFormData({
+  //       title: item.title || "",
+  //       content: item.content || "",
+  //       creator: item.creator || "",
+  //     });
+  //   }
+  // }, [mode, item]);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
