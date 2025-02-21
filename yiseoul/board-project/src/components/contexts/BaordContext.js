@@ -4,23 +4,20 @@ const BoardContext = createContext(null);
 const BoardDispatchContext = createContext(null);
 
 const ACTIONS = {
-  INIT: 'init',
   ADDED: 'added',
   CHANGED: 'changed',
   DELETED: 'deleted'
 };
 
-function initializer(initialValue) {
-  return initialValue;
+function initializer(initialItems = []) {
+  return initialItems.map((item) => ({
+    key: crypto.randomUUID(),
+    ...item
+  }));
 }
 
 function itemsReducer(items, action) {
   switch (action.type) {
-    case ACTIONS.INIT: {
-      const {newItems = []} = action;
-
-      return [...newItems];
-    }
     case ACTIONS.ADDED: {
       const {newItem = {}} = action;
       const {key, title = '', creator = ''} = newItem;
@@ -55,8 +52,8 @@ function itemsReducer(items, action) {
   }
 }
 
-export function BoardProvider({children}) {
-  const [items, dispatch] = useReducer(itemsReducer, [], initializer);
+export function BoardProvider({children, initialItems = []}) {
+  const [items, dispatch] = useReducer(itemsReducer, initialItems, initializer);
 
   return (
       <BoardContext.Provider value={items}>
