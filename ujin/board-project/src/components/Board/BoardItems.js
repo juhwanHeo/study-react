@@ -1,11 +1,13 @@
-import Update from "./cud/Update";
-import Delete from "./cud/Delete";
+import Update from "../cud/Update";
+import Delete from "../cud/Delete";
 import "./Board.css";
 import { useRef } from 'react'
+import { useBoardDispatch } from "./Context/BoardContext";
 
-function BoardItem({ items, onDelete }) {
+function BoardItems({ items }) {
     const list = []
     const titleRef = useRef(null)
+    const dispatch = useBoardDispatch();
 
     function getMap() {
         if (!titleRef.current) {
@@ -35,7 +37,12 @@ function BoardItem({ items, onDelete }) {
                         <span className="post-content"> {e.content} </span>
                         <span className="post-date"> {e.creator} </span>
                         <Update titleId = { e.id } titleRef = { titleRef } />
-                        <Delete onClick={ () => onDelete(e.id) }/>
+                        <Delete onClick={ () => {
+                            dispatch({
+                               type: 'Delete',
+                               id: e.id 
+                            });
+                        }}/>
                     </div>
                 </div>
             </a>
@@ -48,4 +55,4 @@ function BoardItem({ items, onDelete }) {
     );
 }
 
-export default BoardItem;
+export default BoardItems;

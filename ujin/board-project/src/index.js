@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Board from './components/Board';
+import Board from './components/Board/Board';
 import reportWebVitals from './reportWebVitals';
-import Accordion from './components/up-state/Accodion';
+import { BoardProvider } from './components/Board/Context/BoardContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Board/>
-    {/* <Accordion /> */}
+    <BoardProvider>
+      <Board/>
+    </BoardProvider>
   </React.StrictMode>
 );
 
