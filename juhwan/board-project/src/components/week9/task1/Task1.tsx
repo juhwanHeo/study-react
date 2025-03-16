@@ -5,11 +5,6 @@ export default function Task1() {
     const [isDark, setIsDark] = useState(false);
     const [roomId, setRoomId] = useState('general');
     const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-    
-    const options = {
-        serverUrl: serverUrl,
-        roomId: roomId
-    };
 
     return (
         <div className={isDark ? 'dark' : 'light'}>
@@ -35,7 +30,10 @@ export default function Task1() {
                 </select>
             </label>
             <hr />
-            <ChatRoom options={options} />
+            <ChatRoom
+                serverUrl={serverUrl}
+                roomId={roomId}
+            />
         </div>
     );
 }
