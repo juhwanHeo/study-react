@@ -4,6 +4,7 @@ import Board, { useRemoteItems } from './components/board';
 import { BoardProvider } from './components/contexts/BaordContext';
 import Task1Week8 from "./components/week8/task1/Task1";
 import Task2Week8 from "./components/week8/task2/Task2";
+import Task1Week9 from "./components/week9/task1/Task1";
 
 function App() {
   const { remoteItems, loading } = useRemoteItems();
@@ -14,7 +15,8 @@ function App() {
         return (
             <>
               <h2>Task1</h2>
-              <hr/>
+              <Task1Week9 />
+              <hr />
               <h2>Task2</h2>
             </>
         )
@@ -24,8 +26,8 @@ function App() {
         return (
             <>
               <h2>Task1</h2>
-              <Task1Week8/>
-              <hr/>
+              <Task1Week8 />
+              <hr />
               <h2>Task2</h2>
               <Task2Week8 />
             </>
