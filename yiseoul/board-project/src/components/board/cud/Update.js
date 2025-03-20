@@ -1,16 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useBoardContext, ACTIONS} from '../../contexts/BaordContext';
 
 const Update = ({row}) => {
   const dispatch = useBoardContext();
   const [toggle, setToggle] = useState(false);
   const [item, setItem] = useState({title: row.title || ''});
-
-  useEffect(() => {
-    if (!toggle) {
-      setItem({title: row.title || ''});
-    }
-  }, [toggle, row]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +14,17 @@ const Update = ({row}) => {
     }));
   };
 
+  const handleToggle = () => {
+    if (!toggle) {
+      setItem({title: row.title || ''});
+    }
+    setToggle((prev) => !prev);
+  };
+
   return (
     <>
       <div className="board-row ful">
-        <button onClick={() => setToggle((prev) => !prev)}>수정</button>
+        <button onClick={handleToggle}>수정</button>
       </div>
       {toggle && (
           <div className="board-row">

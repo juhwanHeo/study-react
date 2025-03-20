@@ -6,7 +6,11 @@ import Task1 from "./components/week8/task1/Task1";
 import Task2 from "./components/week8/task2/Task2";
 
 function App() {
-  const remoteItems = useRemoteItems();
+  const {remoteItems, loading} = useRemoteItems();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
