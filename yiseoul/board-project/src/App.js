@@ -5,6 +5,7 @@ import { BoardProvider } from './components/contexts/BaordContext';
 import Task1Week8 from "./components/week8/task1/Task1";
 import Task2Week8 from "./components/week8/task2/Task2";
 import Task1Week9 from "./components/week9/task1/Task1";
+import Task2Week9 from "./components/week9/task2/Task2";
 
 function App() {
   const { remoteItems, loading } = useRemoteItems();
@@ -18,6 +19,7 @@ function App() {
               <Task1Week9 />
               <hr />
               <h2>Task2</h2>
+              <Task2Week9 />
             </>
         )
       }
