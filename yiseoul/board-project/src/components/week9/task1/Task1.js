@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
+import "./task1.css";
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
