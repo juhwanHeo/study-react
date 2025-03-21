@@ -1,0 +1,6 @@
+body {
+  margin: 20px;
+  padding: 0;
+}
+.chat label, .chat button { display: block; margin-bottom: 5px; }
+.dark { background: #222; color: #eee; }
