@@ -3,6 +3,7 @@ import { BoardProvider } from "./contexts/BoardContext";
 import Board from "./components/board/Board";
 import Task1 from "./components/week8/task1/Task1";
 import Task2 from "./components/week8/task2/Task2";
+import Week9 from "./components/week9/task1/App";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       </div>
       <Task1 />
       <Task2 />
+      <Week9 />
     </BoardProvider>
   );
 }
