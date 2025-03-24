@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 export default function ChatRoom({ roomId, serverUrl }) {
