@@ -4,8 +4,8 @@ import './index.css';
 import Board from './components/Board/Board';
 import reportWebVitals from './reportWebVitals';
 import { BoardProvider } from './components/Board/Context/BoardContext';
-import Task1 from './components/week8/task1/Task1';
-import Task2 from './components/week8/task2/Task2';
+import Task1 from './components/week9/task1/Task1';
+import Task2 from './components/week9/task2/Task2';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
