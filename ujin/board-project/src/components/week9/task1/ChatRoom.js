@@ -6,7 +6,7 @@ export default function ChatRoom({ options }) {
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
-  }, [options]);
+  }, [options.roomId, options.serverUrl]);
 
   return <h1>Welcome to the {options.roomId} room!</h1>;
 }
