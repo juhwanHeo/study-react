@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useBoardDispatch } from "./Context/BoardContext";
 
-export default function Search({ setItems }) {
-    const [searchTitle, setSearchTitle] = useState('')  
+export default function Search() {
+    const [searchTitle, setSearchTitle] = useState('');
+    const dispatch = useBoardDispatch();
 
     async function getSearchItems(title) {
         const response = await fetch(`http://heojh.iptime.org:8003/board?title=${title}`);
@@ -9,20 +11,22 @@ export default function Search({ setItems }) {
     }
     
     async function onClickSearch() {
-        if (searchTitle) {
-            try {
-                await getSearchItems(searchTitle)
-                .then(res => {
-                    res.map((item) => {
-                        item.id = window.crypto.randomUUID()
-                    })
-                    setItems(res)
+        try {
+            await getSearchItems(searchTitle)
+            .then(res => {
+                res.map((item) => {
+                    item.id = window.crypto.randomUUID()
                 })
-            } catch (err) {
-                console.log(err)
-            }
+                dispatch({
+                    type: 'Search',
+                    data: res
+                });
+            })
+        } catch (err) {
+            console.log(err)
         }
     }
+    
     return (
         <div>
             <input
