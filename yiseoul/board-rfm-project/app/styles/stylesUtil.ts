@@ -42,15 +42,20 @@ const cva = {
     },
   }),
   button: tv({
-    base: cx("cursor-pointer", "flex-auto rounded-full", "border-1"),
+    base: cx("cursor-pointer",
+      "rounded-full",
+      "inline-flex items-center justify-center",
+      "py-0.5",
+      "border-1"),
     variants: {
       color: {
+        grey: "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800",
         blue: "bg-indigo-100 text-blue-600 hover:bg-blue-200 hover:text-blue-800",
         red: "bg-pink-100 text-red-600 hover:bg-pink-200 hover:text-red-800",
       },
     },
     defaultVariants: {
-      color: "blue",
+      color: "grey",
     },
   }),
 }
