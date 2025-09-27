@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useBoardDispatch } from "../../contexts/BoardContext";
 import CreateUpdate from "./cud/CreateUpdate";
 import Delete from "./cud/Delete";
@@ -9,12 +10,20 @@ function BoardItem({ item, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useBoardDispatch();
+  const navigate = useNavigate();
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
   };
-  const toggleEditing = () => {
+
+  const toggleEditing = (e) => {
+    e.stopPropagation();
     setIsEditing((prev) => !prev);
+  };
+
+  const handleViewDetail = (e) => {
+    e.stopPropagation();
+    navigate(`/board/${item.id}`);
   };
 
   const handleSave = (updatedItem) => {
@@ -37,6 +46,9 @@ function BoardItem({ item, index }) {
         <div className={classes.content}>
           <p>{item.content}</p>
           <div className={classes.btnBox}>
+            <Button className={classes.btn} onClick={handleViewDetail}>
+              상세보기
+            </Button>
             <Button className={classes.btn} onClick={toggleEditing}>
               Update
             </Button>

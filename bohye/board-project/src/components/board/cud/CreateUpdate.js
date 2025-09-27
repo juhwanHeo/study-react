@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import classes from "./CreateUpdate.module.css";
 import Button from "../../common/button/Button";
 import { useBoardDispatch } from "../../../contexts/BoardContext";

@@ -37,7 +37,7 @@ function Board() {
   };
 
   return (
-    <div className={classes.boardContainer}>
+    <div className={classes.Board}>
       <Search
         placeholder="Enter title..."
         label="Search Board"
