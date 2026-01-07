@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Profile from "./components/Profile.tsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +29,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <Profile
+        name="이주원"
+        age={28}
+        birthDate={new Date('1999-04-24')}
+      />
     </>
   )
 }
