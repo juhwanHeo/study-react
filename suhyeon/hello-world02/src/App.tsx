@@ -13,7 +13,7 @@ function App() {
         <h1>자기소개 컴포넌트</h1>
         <div className="card">
             <Profile />
-            </div>
+        </div>
         </>
     )
 }
