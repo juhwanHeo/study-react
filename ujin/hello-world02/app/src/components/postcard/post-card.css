@@ -1,0 +1,111 @@
+:root {
+  --ig-card-bg: #000;
+  --ig-border: #262626;
+  --ig-text: #f5f5f5;
+  --ig-subtext: #a8a8a8;
+}
+
+.ig-post {
+  background: var(--ig-card-bg);
+  border-bottom: 1px solid var(--ig-border);
+  color: var(--ig-text);
+  max-width: 480px; /* 필요 없으면 제거 */
+  margin: 0 auto 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 헤더 */
+.ig-post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.ig-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ig-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.ig-user-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.ig-username {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ig-subtitle {
+  color: var(--ig-subtext);
+  font-size: 11px;
+}
+
+/* 이미지 */
+.ig-image-wrapper {
+  width: 100%;
+  background: #111;
+}
+
+.ig-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 액션 */
+.ig-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 0;
+}
+
+.ig-actions-left {
+  display: flex;
+  gap: 8px;
+}
+
+.ig-icon-button {
+  all: unset;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 20px;
+}
+
+/* 본문 */
+.ig-post-body {
+  padding: 4px 12px 10px;
+  font-size: 13px;
+}
+
+.ig-likes {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ig-caption {
+  white-space: pre-line;
+  margin-bottom: 4px;
+}
+
+.ig-caption .ig-username {
+  margin-right: 4px;
+}
+
+.ig-time {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ig-subtext);
+}
