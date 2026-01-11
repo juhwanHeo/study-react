@@ -1,13 +1,3 @@
-const containerStyle = {
-    maxWidth: '500px',
-    margin: '50px auto',
-    padding: '30px',
-    backgroundColor: '#f8f9fa',
-    borderRadius: '12px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    fontFamily: 'Arial, sans-serif'
-};
-
 const titleStyle = {
     color: '#2c3e50',
     marginBottom: '20px',
@@ -30,7 +20,14 @@ const textStyle = {
 
 export const Profile = () => {
     return (
-        <div style={containerStyle}>
+        <div style={{
+            maxWidth: '500px',
+            margin: '50px auto',
+            padding: '30px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        }}>
             <h1 style={titleStyle}>Profile</h1>
             <p style={textStyle}>Name: Bohye</p>
             <p style={textStyle}>Age: 32</p>
