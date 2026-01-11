@@ -1,10 +1,13 @@
 //이름, 나이, 생년월일을 출력하는 컴포넌트입니다.
-export function Profile() {
+export default function Profile() {
+  const name = "장원준";
+  const age = "28";
+  const birthday = "1999.05.05";
   return (
-    <div>
-      <p>이름:장원준</p>
-      <p>나이:28</p>
-      <p>생년월일:1999.05.05</p>
-    </div>
+    <>
+      <p>이름:{name}</p>
+      <p>나이:{age}</p>
+      <p>생년월일:{birthday}</p>
+    </>
   );
 }
