@@ -13,7 +13,7 @@
   padding: 10px;
   font-weight: bold;
   text-align: left;
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
   border-bottom: 1px solid #ccc;
 }
 
@@ -40,6 +40,6 @@
 /* 왼쪽 컬럼 스타일 */
 .profile-row .label:first-child {
   font-weight: 600;
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
   width: 120px;
 }
