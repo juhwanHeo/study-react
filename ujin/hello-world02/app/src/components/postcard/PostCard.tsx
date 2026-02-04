@@ -60,7 +60,7 @@ export default function PostCard({
 
       {/* 본문 */}
       <div className="ig-post-body">
-        <div className="ig-likes">좋아요 {likes.toLocaleString()}개</div>
+        <div className="ig-likes" style={{ background: 'red', }}>좋아요 {likes.toLocaleString()}개</div>
         <div className="ig-caption">
           <span className="ig-username">{username}</span>{' '}
           <span>{caption}</span>
