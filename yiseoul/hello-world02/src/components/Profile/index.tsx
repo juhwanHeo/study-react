@@ -9,7 +9,7 @@ type ProfileInfos = {
 export default function Profile({ name, age, birth }: ProfileInfos) {
   return (
     <>
-      <div className="profile-container">
+      <div className="profile-container" style={{backgroundImage: "url(../../../static/images/hayang.jpg)", backgroundSize: "cover"}}>
         <h2 className="title">자기소개</h2>
         <div className="profile-row">
           <span className="label">이름: </span>
