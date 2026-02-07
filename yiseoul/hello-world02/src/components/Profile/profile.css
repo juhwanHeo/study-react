@@ -1,0 +1,45 @@
+.profile-container {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  display: table-caption;
+  caption-side: top;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+  /*background-color: #f5f5f5;*/
+  border-bottom: 1px solid #ccc;
+}
+
+.profile-row {
+  display: table-row;
+}
+
+.profile-row .label {
+  display: table-cell;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.profile-row .label:last-child {
+  border-right: none;
+}
+
+/* 마지막 행 아래 border 제거 */
+.profile-row:last-child .label {
+  border-bottom: none;
+}
+
+/* 왼쪽 컬럼 스타일 */
+.profile-row .label:first-child {
+  font-weight: 600;
+  /*background-color: #fafafa;*/
+  width: 120px;
+}
