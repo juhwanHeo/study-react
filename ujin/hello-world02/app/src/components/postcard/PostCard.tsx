@@ -20,7 +20,7 @@ export default function PostCard({
   timeAgo = "",
 }: InstagramPostCardProps) {
   return (
-    <article className="ig-post">
+    <article className="ig-post" style={{ background: 'red', }}>
       {/* 헤더 */}
       <header className="ig-post-header">
         <div className="ig-user">
