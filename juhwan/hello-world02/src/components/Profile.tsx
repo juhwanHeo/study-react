@@ -4,10 +4,15 @@ interface ProfileProps {
   username: string;
   age: number;
   birthday: Dayjs;
+  isCheck?: boolean;
 }
 
-export function Profile({ username, age, birthday }: ProfileProps) {
-
+export function Profile({
+  username,
+  age,
+  birthday,
+  isCheck = false
+}: ProfileProps) {
   return (
       <div
           style={{
