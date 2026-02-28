@@ -23,6 +23,7 @@ export function Profile({
             color: '#f5f5f5',
             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
             fontSize: '14px',
+            margin: '3px',
           }}
       >
         <div style={{ marginBottom: '6px' }}>
