@@ -28,12 +28,19 @@ export function Profile({
         <div style={{ marginBottom: '6px' }}>
           이름: <strong>{username}</strong>
         </div>
-        <div style={{ marginBottom: '6px' }}>
-          나이: <strong>{age}</strong>
-        </div>
-        <div>
-          생년월일: <strong>{birthday.format('YYYY-MM-DD')}</strong>
-        </div>
+
+        {
+          isCheck && (
+              <>
+                <div style={{ marginBottom: '6px' }}>
+                  나이: <strong>{age}</strong>
+                </div>
+                <div>
+                  생년월일: <strong>{birthday.format('YYYY-MM-DD')}</strong>
+                </div>
+              </>
+            )
+        }
       </div>
   )
 }
