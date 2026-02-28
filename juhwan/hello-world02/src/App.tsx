@@ -6,6 +6,8 @@ function App() {
 
   return (
     <>
+      <div>스터디원 목록</div>
+
       <Profile
         username={'김보혜'}
         age={32}
