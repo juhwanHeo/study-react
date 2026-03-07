@@ -22,14 +22,20 @@ type ProfileProps = {
   name: string;
   age: number;
   birthDate: string;
+  isChecked: boolean;
 };
 
-export const Profile = ({ name, age, birthDate }: ProfileProps) => {
+export const Profile = ({
+  name,
+  age,
+  birthDate,
+  isChecked = true,
+}: ProfileProps) => {
   return (
     <div
       style={{
         maxWidth: "500px",
-        margin: "50px auto",
+        minWidth: "260px",
         padding: "30px",
         backgroundColor: "#f8f9fa",
         borderRadius: "12px",
@@ -38,8 +44,8 @@ export const Profile = ({ name, age, birthDate }: ProfileProps) => {
     >
       <h1 style={titleStyle}>Profile</h1>
       <p style={textStyle}>Name: {name}</p>
-      <p style={textStyle}>Age: {age}</p>
-      <p style={textStyle}>Birthday: {birthDate}</p>
+      {isChecked && <p style={textStyle}>Age: {age}</p>}
+      {isChecked && <p style={textStyle}>Birthday: {birthDate}</p>}
     </div>
   );
 };
