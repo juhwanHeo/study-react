@@ -4,9 +4,10 @@ interface ProfileProps {
   name: string;
   age: number;
   birthDate: Date;
+  isCheck?: boolean;
 }
 
-const Profile: React.FC<ProfileProps> = ({name, age, birthDate}) => {
+const Profile: React.FC<ProfileProps> = ({name, age, birthDate, isCheck = false}) => {
   const formattedDate = birthDate.toISOString().split('T')[0];
 
   return (
@@ -31,29 +32,35 @@ const Profile: React.FC<ProfileProps> = ({name, age, birthDate}) => {
               <span style={{fontWeight: 'bold'}}>이름</span>
               <span>{name}</span>
           </p>
-          <p style={{
-              fontSize: '1.1rem',
-              margin: '0.8rem 0',
-              color: '#333333',
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0.5rem 1rem',
-              borderBottom: '1px solid #eee'
-          }}>
-              <span style={{fontWeight: 'bold'}}>나이</span>
-              <span>{age}</span>
-          </p>
-          <p style={{
-              fontSize: '1.1rem',
-              margin: '0.8rem 0',
-              color: '#333333',
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0.5rem 1rem',
-          }}>
-              <span style={{ fontWeight: 'bold' }}>생년월일</span>
-              <span>{formattedDate}</span>
-          </p>
+          {
+              isCheck && (
+                  <>
+                      <p style={{
+                          fontSize: '1.1rem',
+                          margin: '0.8rem 0',
+                          color: '#333333',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          padding: '0.5rem 1rem',
+                          borderBottom: '1px solid #eee'
+                      }}>
+                          <span style={{fontWeight: 'bold'}}>나이</span>
+                          <span>{age}</span>
+                      </p>
+                      <p style={{
+                          fontSize: '1.1rem',
+                          margin: '0.8rem 0',
+                          color: '#333333',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          padding: '0.5rem 1rem',
+                      }}>
+                          <span style={{ fontWeight: 'bold' }}>생년월일</span>
+                          <span>{formattedDate}</span>
+                      </p>
+                  </>
+              )
+          }
     </div>
   );
 };

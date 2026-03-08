@@ -34,6 +34,49 @@ function App() {
         name="이주원"
         age={28}
         birthDate={new Date('1999-04-24')}
+        isCheck
+      />
+
+      <Profile
+        name="허주환"
+        age={28}
+        birthDate={new Date('1999-06-30')}
+      />
+
+      <Profile
+        name="장원준"
+        age={29}
+        birthDate={new Date('1999-05-05')}
+      />
+
+      <Profile
+        name="홍석민"
+        age={29}
+        birthDate={new Date('1998-03-31')}
+      />
+
+      <Profile
+        name="조수현"
+        age={26}
+        birthDate={new Date('2001-09-20')}
+      />
+
+      <Profile
+        name="한이슬"
+        age={29}
+        birthDate={new Date('1996-12-03')}
+      />
+
+      <Profile
+        name="김우진"
+        age={29}
+        birthDate={new Date('1998-05-04')}
+      />
+
+      <Profile
+        name="김보혜"
+        age={32}
+        birthDate={new Date('1995-11-06')}
       />
     </>
   )
