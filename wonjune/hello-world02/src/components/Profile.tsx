@@ -1,13 +1,23 @@
-export default function Profile() {
-  const name = "장원준";
-  const age = "28";
-  const birthday = "1999.05.05";
-  const textStyle = {color:'white', fontWeight:'bold'};
+import "../App.css"
+
+type ProfileProps = {
+  name: string;
+  age: number;
+  birthday: string;
+  isCheck: boolean;
+};
+
+export default function Profile(props: ProfileProps) {
   return (
-    <div style={{background:'blue', borderRadius:'25%', padding:'10px'}}>
-      <p style={textStyle}>이름:{name}</p>
-      <p style={textStyle}>나이:{age}</p>
-      <p style={textStyle}>생년월일:{birthday}</p>
+    <div className={props.isCheck ? "profile highlight" : "profile"}>
+      <p>이름: {props.name}</p>
+
+      {props.isCheck && (
+        <>
+          <p>나이: {props.age}</p>
+          <p>생년월일: {props.birthday}</p>
+        </>
+      )}
     </div>
   );
 }
