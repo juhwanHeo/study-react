@@ -1,30 +1,36 @@
 import './post-card.css';
 
-type InstagramPostCardProps = {
-  username?: string;
+export type Post = {
+  username: string;
   avatarUrl?: string;
-  imageUrl?: string;
+  imageUrl: string;
   liked?: boolean;
   likes?: number;
   caption?: string;
   timeAgo?: string;
 };
 
+type PostCardProps = {
+  post: Post;
+};
+
 export default function PostCard({
-  username = "",
-  avatarUrl = "",
-  imageUrl = "",
-  liked = false,
-  likes = 0,
-  caption = "",
-  timeAgo = "",
-}: InstagramPostCardProps) {
+  post: {
+    username,
+    avatarUrl,
+    imageUrl,
+    liked = false,
+    likes = 0,
+    caption = '',
+    timeAgo = '',
+  },
+}: PostCardProps) {
   return (
-    <article className="ig-post" style={{ background: 'red', }}>
+    <article className="ig-post">
       {/* 헤더 */}
       <header className="ig-post-header">
         <div className="ig-user">
-          <img src={avatarUrl} alt={username} className="ig-avatar" />
+          {avatarUrl ? <img src={avatarUrl} alt={username} className="ig-avatar" /> : null}
           <div className="ig-user-meta">
             <span className="ig-username">{username}</span>
             <span className="ig-subtitle">팔로잉</span>

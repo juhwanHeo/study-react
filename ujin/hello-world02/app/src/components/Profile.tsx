@@ -1,21 +1,29 @@
 import PostCard from "./postcard/PostCard";
 
-export default function Profile() {
-    let name: string = "Kim"
-    let age: number = 24
-    let birth_day: string = "2020/01/20"
+interface Props {
+    isChecked?: boolean;
+    name?: string;
+    age?: number;
+    birthDay?: string;
+}
 
-    let usernameText = `이름: ${name}`
-    let caption =  `
-            나이: ${age}
-            생년월일: ${birth_day}`           
+export default function Profile({
+    isChecked = false,
+    name = "Default name",
+    age = 0,
+    birthDay = "No Data",
+}: Props) {
+    const caption = isChecked ? `나이: ${age}\n생년월일: ${birthDay}` : "";
+    const post = {
+        username: name,
+        caption,
+        imageUrl: "https://i.imgur.com/QIrZWGIs.jpg",
+        timeAgo: "방금 전",
+    };
+
     return (
         <>
-            <PostCard
-                username={usernameText}
-                caption={caption}
-                imageUrl="https://i.imgur.com/QIrZWGIs.jpg"
-            />
+            <PostCard post={post} />
         </>
     );
 }
