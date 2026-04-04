@@ -1,13 +1,7 @@
 import './profile.css'
+import type {ProfileProps} from './types.ts'
 
-type ProfileInfos = {
-  name: string;
-  age: number;
-  birth: string;
-  isCheck: boolean;
-}
-
-export default function Profile({ name, age, birth, isCheck }: ProfileInfos) {
+export default function Profile({name, age, birth, isCheck}: ProfileProps) {
   return (
     <>
       <div className="profile-container" style={{backgroundColor: "orange"}}>
